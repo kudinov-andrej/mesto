@@ -1,4 +1,4 @@
-.body {
+  .body {
     margin: 0 auto;
     padding: 0;
     max-width: 1280px;
@@ -13,7 +13,7 @@
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     font-family: 'Inter', sans-serif;
-}
+} 
 
 
 
@@ -44,7 +44,7 @@
     padding: 0;
     margin: auto;
     max-width: 880px;
-    position: relative;
+    
 
 }
 
@@ -62,39 +62,43 @@
     padding: 0;
     max-width: 880px;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
 }
+
 .profile__media {
     margin: 0;
     padding: 0;
     margin-left: -23.5px;
     background-color: #000000;
-    width: 168.75px; 
+    width: 168.75px;
 }
+
 .profile__image {
     margin: 0;
     padding: 0;
     margin-top: 36.25px;
     margin-left: 23.5px;
     width: 120px;
-  
+
     border-radius: 50%;
     object-fit: cover;
 
 }
+
 .profile__content {
     margin: 0;
     padding: 0;
     padding-left: 3.75px;
-    display: flex; 
-    flex-direction: column ;
+    display: flex;
+    flex-direction: column;
 }
+
 .profile__info {
     margin: 0;
     padding: 0;
-    display: flex; 
+    display: flex;
     flex-direction: row;
-    
+
 
 }
 
@@ -108,12 +112,13 @@
     line-height: 48px;
     margin-right: 18px;
     max-width: 294px;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
 
 }
+
 .profile__profession {
     margin: 0;
     padding: 0;
@@ -122,6 +127,7 @@
     line-height: 22px;
     max-width: 336px;
 }
+
 .profile__edit-button {
     margin: 0;
     padding: 0;
@@ -134,8 +140,9 @@
     background-image: url(./image/Edit_Button.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    
+
 }
+
 .profile__edit-button:hover {
     opacity: .6;
     cursor: pointer;
@@ -155,85 +162,176 @@
     margin-top: 75px;
     width: 150px;
     height: 50px;
-    
+
 }
+
 .profile__add-button:hover {
     opacity: .6;
     cursor: pointer;
-  }
- .popap {
+}
+
+.popap {
     opacity: 1;
- }
-  .popap__conteiner{
+    
+}
+
+.popap__conteiner {
     margin: 0;
     padding: 0;
-    align-self:center;
-    justify-self: center;
-    margin-top: 195px;
-    margin-left: 32.2%;
     z-index: 1;
     display: none;
-    position: absolute;
-    min-width: 430px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     height: 330px;
     background: #FFFFFF;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+}
+.popap__title {
+    margin: 0;
+    padding: 0;
+    margin-left: 36px;
+    margin-right: 64px;
+    margin-top: 34px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+.popap__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popap__form-name {
+    margin: 0;
+    padding: 0;
+    margin-top: 54px;
+    margin-bottom: 30px;
+    height: 14px;
+    padding-bottom: 13px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid rgb(0%, 0%, 0%, 0.2);
+    width: 358px;
+    color: #000000;
+}
+.popap__form-profession {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 40px;
+    border: none;
+    outline: none;
+    height: 14px;
+    padding-bottom: 13px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    width: 358px;
+    color: #000000;
+    border-bottom: 1px solid rgb(0%, 0%, 0%, 0.2);
+
+}
+
+.popap__button {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 37px;
+    width: 358px;
+    height: 50px;
+    color: #FFFFFF;
+    border-radius: 2px;
+    background-color: #000000;
+}
+
+.popap__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.popap__button-close {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 430px;
+    background-color: #000000;
+    background-size: contain;
     
-  }
+    width: 32px;
+    height: 32px;
+    background-image: url(./image/Close_Icon.png);
+
+}
+
+.popap__button-close:hover {
+
+   opacity: .6;
+    cursor: pointer; 
+}
+
+
 .plase {
-  margin: 0;
-  padding: 0;
-  display: block;
-  margin-top: 76px;
-  max-width: 880px;
-  row-gap: 20px;
-  column-gap: 17px;
-  border-radius: 10px;
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
- 
-} 
+    margin: 0;
+    padding: 0;
+    display: block;
+    margin-top: 76px;
+    max-width: 880px;
+    row-gap: 20px;
+    column-gap: 17px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+
+}
 
 @media screen and (max-width: 913px) {
     .plase {
-     margin: auto;
-      max-width: 581px;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
+        margin: auto;
+        max-width: 581px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
     }
-  }
-  
+}
 
-  .photo-plase {
+
+.photo-plase {
     display: flex;
     flex-direction: column;
     max-width: 282px;
     background-color: #FFFFFF;
     border-radius: 10px;
-  }
+    overflow: hidden;
+}
 
-  .photo-plase__image {
+.photo-plase__image {
     margin: 0;
     padding: 0;
     display: block;
     object-fit: contain;
     object-position: center center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+   
 
-    
-  }
-  .photo-plase__content {
+
+}
+
+.photo-plase__content {
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
+}
 
-  .photo-plase__name {
+.photo-plase__name {
     margin: 0;
     padding: 0;
     margin-top: 25px;
@@ -243,12 +341,12 @@
     font-size: 24px;
     line-height: 29px;
     color: #000000;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+}
 
-  .photo-plase__hard {
+.photo-plase__hard {
     margin: 0;
     padding: 0;
     background-image: url(./image/hard.png);
@@ -257,25 +355,28 @@
     width: 22px;
     height: 19px;
     border: none;
-    
-  }
-  .photo-plase__hard:hover {
+
+}
+
+.photo-plase__hard:hover {
     cursor: pointer;
     opacity: .6;
-  }
-  .photo-plase__hard:active {
-    background: #000000;
-  }
+}
 
-  .footer__info {
+.photo-plase__hard:active {
+    background: #000000;
+}
+
+.footer__info {
     margin: 0;
-    padding: 0;
+    padding: 0; 
+    margin: auto;
+    max-width: 880px;
     margin-top: 67px;
     padding-bottom: 60px;
-    max-width: 318px;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     color: #545454;
 
-  }
+}
