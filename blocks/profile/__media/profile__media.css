@@ -1,0 +1,14 @@
+.profile__media {
+    margin: 0;
+    padding: 0;
+    margin-left: -23.5px;
+    background-color: #000000;
+    width: 168.75px;
+}
+
+@media screen and (max-width: 929px) {
+    .profile__media {
+        margin-left: 0;
+
+    }
+}

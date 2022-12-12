@@ -5,40 +5,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./style.css"> </head>
+  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="stylesheet" href="./style.css">
+  
+ </head>
 <body class="body">
-  <div class="popap">
     <header class="header">
        <img class="header__logo" src="./image/Vector.png" alt="логотип"> 
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__block">
-          <div class="profile__media"> <img class="profile__image" src="./image/image.jpg" alt="Фото профиля"> </div>
+          <div class="profile__media"> 
+            <img class="profile__image" src="./image/image.jpg" alt="Фото профиля"> 
+          </div>
           <div class="profile__content">
             <div class="profile__info">
-              <p class="profile__name">Жак-Ив Кусто</p> <button type="button" class="profile__edit-button"></button> </div>
+              <h1 class="profile__name">Жак-Ив Кусто</h1> 
+              <button type="button" class="profile__edit-button"></button> </div>
             <p class="profile__profession">Исследователь океана</p>
           </div>
         </div> 
         <button type="button" class="profile__add-button"></button> 
       </section>
       <section class="plase">
-        <article class="photo-plase"> <img class="photo-plase__image" src="./image/карачаевск.jpg" alt="Карачаевск">
+        <article class="photo-plase"> <img class="photo-plase__image" src="./image/москва.jpg" alt="Москва">
           <div class="photo-plase__content">
-            <p class="photo-plase__name">Карачаевск</p>
+            <p class="photo-plase__name">Москва</p>
             <div class="photo-plase__hard"></div>
           </div>
         </article>
-        <article class="photo-plase"> <img class="photo-plase__image" src="./image/гора_эльбрус.png" alt="Гора Эльбрус">
+        <article class="photo-plase"> <img class="photo-plase__image" src="./image/байкал1.jpg" alt="Байкал">
           <div class="photo-plase__content">
-            <p class="photo-plase__name">Гора Эльбрус</p>
+            <p class="photo-plase__name">Байкал</p>
             <div class="photo-plase__hard"></div>
           </div>
         </article>
-        <article class="photo-plase"> <img class="photo-plase__image" src="./image/домбай.png" alt="Домбай">
+        <article class="photo-plase"> <img class="photo-plase__image" src="./image/волга.jpg" alt="Волга">
           <div class="photo-plase__content">
-            <p class="photo-plase__name">Домбай</p>
+            <p class="photo-plase__name">Волга</p>
             <div class="photo-plase__hard"></div>
           </div>
         </article>
@@ -64,6 +69,7 @@
       <p class="footer__info">&#xa9;2022 Mesto Russia</p>
     </footer>
   </div>
+  <div class="popap">
   <div class="popap__conteiner">
   <button class="popap__button-close"></button>
     <h2 class="popap__title">Редактировать профиль</h2>
@@ -73,7 +79,7 @@
       <input type="submit" class="popap__button" value="Сохранить" />
     </form>
   </div>
-  
+  <script src="./script/index.js"></script>
 </body>
 
 </html>

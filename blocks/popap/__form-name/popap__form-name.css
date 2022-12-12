@@ -1,0 +1,25 @@
+.popap__form-name {
+    margin: 0;
+    padding: 0;
+    margin-top: 54px;
+    margin-bottom: 30px;
+    height: 14px;
+    padding-bottom: 13px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 1px solid rgb(0%, 0%, 0%, 0.2);
+    width: 358px;
+    color: #000000;
+}
+
+@media screen and (max-width: 929px) {
+    .popap__form-name {
+        max-width: 238px;
+        margin-left: 22px;
+        margin-right: 22px;
+
+    }
+}
