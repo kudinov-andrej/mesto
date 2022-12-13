@@ -1,6 +1,7 @@
 .photo-plase__name {
     margin: 0;
     padding: 0;
+    max-width: 200px;
     margin-top: 25px;
     margin-bottom: 31px;
     margin-left: 24px;

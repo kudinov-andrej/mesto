@@ -10,11 +10,11 @@ const formElement = document.querySelector('.popap__form');
 
 
 aboutButton.addEventListener('click', () => {
-    aboutPopap.classList.add('popap__popap_on');
+    aboutPopap.classList.add('popap_opened');
 });
 
 aboutButtonClose.addEventListener('click', () => {
-    aboutPopap.classList.remove('popap__popap_on');
+    aboutPopap.classList.remove('popap_opened');
 });
 
 
@@ -28,7 +28,7 @@ function handleFormSubmit (evt) {
 };
 
 aboutSave.addEventListener('click', () => {
-    aboutPopap.classList.remove('popap__popap_on');
+    aboutPopap.classList.remove('popap_opened');
 });
 
 

@@ -4,20 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./vendor/normalize.css">
-  <link rel="stylesheet" href="./vendor/Inter/inter.css">
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="body">
   <header class="header">
-    <img class="header__logo" src="./image/Vector.png" alt="логотип">
+    <img class="header__logo" src="./image/logo.svg" alt="логотип">
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__block">
-        <div class="profile__media">
           <img class="profile__image" src="./image/image.jpg" alt="Фото профиля">
-        </div>
         <div class="profile__content">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -72,11 +68,11 @@
   </footer>
   <div class="popap">
     <div class="popap__conteiner">
-      <button class="popap__button-close"></button>
+      <button class="popap__button-close" type = "button"></button>
       <h2 class="popap__title">Редактировать профиль</h2>
-      <form class="popap__form" action="#">
-        <input type="text" class="popap__form-name" value="Жак-Ив Кусто" />
-        <input type="text" class="popap__form-profession" value="Исследователь океана" />
+      <form class="popap__form" action="#" name ="popap__form">
+        <input type="text" class="popap__form-name" value="Жак-Ив Кусто" name = "popapName" />
+        <input type="text" class="popap__form-profession" value="Исследователь океана" name = "popapProfession"/>
         <input type="submit" class="popap__button" value="Сохранить" />
       </form>
     </div>
