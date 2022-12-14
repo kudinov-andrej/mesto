@@ -18,8 +18,7 @@
 @import url(./../blocks/popap/__conteiner/popap__conteiner.css);
 @import url(./../blocks/popap/__title/popap__title.css);
 @import url(./../blocks/popap/__form/popap__form.css);
-@import url(./../blocks/popap/__form-name/popap__form-name.css);
-@import url(./../blocks/popap/__form-profession/popap__form-profession.css);
+@import url(./../blocks/popap/__form-info/popap__form-info.css);
 @import url(./../blocks/popap/__button/popap__button.css);
 @import url(./../blocks/popap/__button-close/popap__button-close.css);
 @import url(./../blocks/plase/plase.css);

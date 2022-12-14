@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     margin-left: 36px;
+    margin-bottom: 54px;
     margin-right: 64px;
     margin-top: 34px;
     font-weight: 900;
@@ -14,10 +15,10 @@
 @media screen and (max-width: 929px) {
     .popap__title {
         margin: auto;
+        margin-bottom: 75px;
         max-width: 238px;
         margin-top: 25px;
         font-size: 18px;
         line-height: 22px;
-
     }
 }
