@@ -1,4 +1,4 @@
-.popap__form-info {
+.popap__input {
     margin: 0;
     padding: 0;
     margin-bottom: 30px;
@@ -15,13 +15,13 @@
 }
 
 
-.popap__form-info:nth-child(2n) {
+.popap__input:nth-child(2n) {
     margin-bottom: 40px;
 
   }
 
 @media screen and (max-width: 929px) {
-    .popap__form-info {
+    .popap__input {
         max-width: 238px;
         margin-left: 22px;
         margin-right: 22px;
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 929px) {
-    .popap__form-info:nth-child(2n) {
+    .popap__input:nth-child(2n) {
         margin-bottom: 45px;
         
     }
