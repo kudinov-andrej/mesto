@@ -32,4 +32,46 @@ aboutButton.addEventListener('click', popapOpen);
 formElement.addEventListener('submit', handleFormSubmit); 
 
 
+/* добавить карточки на страницу */
 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const photoCards = document.querySelector('.plase');
+const photoTemplate = document.querySelector('.photo-template')
+.content
+.querySelector('.photo-plase');
+
+initialCards.forEach(function (element)  {
+	const card = photoTemplate.cloneNode(true);
+
+	card.querySelector('.photo-plase__name').textContent = element.name;
+  card.querySelector('.photo-plase__image').src = element.link;
+
+photoCards.append(card) 
+
+})
