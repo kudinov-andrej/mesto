@@ -65,13 +65,30 @@ const photoCards = document.querySelector('.plase');
 const photoTemplate = document.querySelector('.photo-template')
 .content
 .querySelector('.photo-plase');
+    
 
-initialCards.forEach(function (element)  {
+function createCard({name, link})  {
 	const card = photoTemplate.cloneNode(true);
+	const cardName = card.querySelector('.photo-plase__name');
+  const cardLink =  card.querySelector('.photo-plase__image');
+  
+  cardName.textContent = name;
+  cardLink.src = link;
 
-	card.querySelector('.photo-plase__name').textContent = element.name;
-  card.querySelector('.photo-plase__image').src = element.link;
+return card;
 
-photoCards.append(card) 
+};
 
-})
+function renderCards() {
+  initialCards.forEach(item => {
+    const cardHtml = createCard(item);
+    photoCards.append(cardHtml);
+  })
+}
+
+
+renderCards();
+
+
+
+
