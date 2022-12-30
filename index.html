@@ -29,7 +29,7 @@
   <footer class="footer">
     <p class="footer__info">&#xa9;2022 Mesto Russia</p>
   </footer>
-  <div class="popap">
+  <div class="popap popap_typy_profile">
     <div class="popap__conteiner">
       <button class="popap__button-close" type = "button"></button>
       <h2 class="popap__title">Редактировать профиль</h2>
@@ -40,11 +40,22 @@
       </form>
     </div>
   </div>
+  <div class="popap popap_typy_place">
+    <div class="popap__conteiner">
+      <button class="popap__button-close" type = "button"></button>
+      <h2 class="popap__title">Новое место</h2>
+      <form class="popap__form" action="#" name ="popap-form">
+        <input type="text" class="popap__input popap__input_type_place-name" value="" name = "popap-name" placeholder="Название"/>
+        <input type="text" class="popap__input popap__input_type_link" value="" name = "popap-profession" placeholder="Ссылка на картинку"/>
+        <input type="submit" class="popap__button" value="Создать" />
+      </form>
+    </div>
+  </div>
   <template class="photo-template">
     <article class="photo-plase"> 
-        <img class="photo-plase__image" src="${name}" alt="Байкал">
+        <img class="photo-plase__image" src="#" alt="Байкал">
         <div class="photo-plase__content">
-        <h2 class="photo-plase__name">Байкал</h2>
+        <h2 class="photo-plase__name"></h2>
         <button type="button" class="photo-plase__hard"></button>
       </div>
     </article>
