@@ -23,10 +23,11 @@
 @import url(./../blocks/popap/__button-close/popap__button-close.css);
 @import url(./../blocks/plase/plase.css);
 @import url(./../blocks/photo-plase/photo-plase.css);
+@import url(./../blocks/photo-plase/__delete-button/photo-plase__delete-button.css);
 @import url(./../blocks/photo-plase/__image/photo-plase__image.css);
 @import url(./../blocks/photo-plase/__content/photo-plase__content.css);
 @import url(./../blocks/photo-plase/__name/photo-plase__name.css);
 @import url(./../blocks/photo-plase/__hard/photo-plase__hard.css);
-@import url(./../blocks/photo-plase/__hard/photo-plase__hard.css);
+@import url(./../blocks/photo-plase/__hard/_active/hard_active.css);
 @import url(./../blocks/footer/footer.css);
 @import url(./../blocks/footer/__info/footer__info.css);

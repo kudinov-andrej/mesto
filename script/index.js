@@ -10,6 +10,11 @@ const aboutProfession = document.querySelector('.profile__profession');
 const formElement = document.querySelector('.popap__form');
 const aboutAddbutton = document.querySelector('.profile__add-button');
 
+
+const photoCards = document.querySelector('.plase');
+const photoTemplate = document.querySelector('.photo-template')
+.content
+.querySelector('.photo-plase');
 const aboutFormNewPlase =  aboutPopapPlace.querySelector('.popap__form');
 const aboutButtonSavePlace =  aboutPopapPlace.querySelector('.popap__button');
 const aboutInputNewPlace =  aboutPopapPlace.querySelector('.popap__input_type_place-name');
@@ -17,7 +22,6 @@ const aboutInputNewLink =  aboutPopapPlace.querySelector('.popap__input_type_lin
 
 
 
-console.log(aboutInputNewPlace);
 
 function popapOpen() {
   aboutPopapProfile.classList.add('popap_opened');
@@ -66,17 +70,21 @@ const initialCards = [
   }
 ];
 
-const photoCards = document.querySelector('.plase');
-const photoTemplate = document.querySelector('.photo-template')
-.content
-.querySelector('.photo-plase');
     
 
 function createCard(element)  {
 	const card = photoTemplate.cloneNode(true);
 	card.querySelector('.photo-plase__name').textContent = element.name;
   card.querySelector('.photo-plase__image').src = element.link;
- 
+
+  
+  const likeButton = card.querySelector('.photo-plase__hard');
+  likeButton.addEventListener("click", (evt) => activeHard(evt));
+
+  const aboutDeleteCard = card.querySelector('.photo-plase__delete-button');
+  aboutDeleteCard.addEventListener("click", (evt) => deleteCard(evt));
+
+
 return card;
 
 };
@@ -96,9 +104,6 @@ function addPlace() {
 }
 
 
-
-
-
 // создать
 function createNewCard (evt) {
   evt.preventDefault();
@@ -110,6 +115,17 @@ function createNewCard (evt) {
 };
 
 // удалить
+function deleteCard(event) {
+	const deleteCard = event.target.closest('.photo-plase').remove();
+  
+};
+
+// поставить лайк
+function activeHard(evt) {
+  evt.target.classList.toggle("hard_active");
+};
+
+
 
 
 aboutFormNewPlase.addEventListener('submit', createNewCard);
