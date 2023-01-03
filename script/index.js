@@ -1,7 +1,7 @@
 const aboutButton = document.querySelector('.profile__edit-button');
-const aboutPopapprofile = document.querySelector('.popap_typy_profile');
-const aboutPopapplace = document.querySelector('.popap_typy_place');
-const aboutButtoncloseplace = aboutPopapplace.querySelector('.popap__button-close');
+const aboutPopapProfile = document.querySelector('.popap_typy_profile');
+const aboutPopapPlace = document.querySelector('.popap_typy_place');
+const aboutButtonclosePlace =  aboutPopapPlace.querySelector('.popap__button-close');
 const aboutButtonClose = document.querySelector('.popap__button-close');
 const aboutformName = document.querySelector('.popap__input_type_name');
 const aboutformProfession = document.querySelector('.popap__input_type_profession');
@@ -10,16 +10,24 @@ const aboutProfession = document.querySelector('.profile__profession');
 const formElement = document.querySelector('.popap__form');
 const aboutAddbutton = document.querySelector('.profile__add-button');
 
+const aboutFormNewPlase =  aboutPopapPlace.querySelector('.popap__form');
+const aboutButtonSavePlace =  aboutPopapPlace.querySelector('.popap__button');
+const aboutInputNewPlace =  aboutPopapPlace.querySelector('.popap__input_type_place-name');
+const aboutInputNewLink =  aboutPopapPlace.querySelector('.popap__input_type_link');
+
+
+
+console.log(aboutInputNewPlace);
 
 function popapOpen() {
-  aboutPopapprofile.classList.add('popap_opened');
+  aboutPopapProfile.classList.add('popap_opened');
   aboutformName.value = aboutName.textContent;
   aboutformProfession.value = aboutProfession.textContent;
 }
 
 function popapClose() {
-  aboutPopapprofile.classList.remove('popap_opened');
-  aboutPopapplace.classList.remove('popap_opened');
+  aboutPopapProfile.classList.remove('popap_opened');
+   aboutPopapPlace.classList.remove('popap_opened');
 };
 
 function handleFormSubmit (evt) {
@@ -64,14 +72,11 @@ const photoTemplate = document.querySelector('.photo-template')
 .querySelector('.photo-plase');
     
 
-function createCard({name, link})  {
+function createCard(element)  {
 	const card = photoTemplate.cloneNode(true);
-	const cardName = card.querySelector('.photo-plase__name');
-  const cardLink =  card.querySelector('.photo-plase__image');
-
-  cardName.textContent = name;
-  cardLink.src = link;
-
+	card.querySelector('.photo-plase__name').textContent = element.name;
+  card.querySelector('.photo-plase__image').src = element.link;
+ 
 return card;
 
 };
@@ -79,20 +84,35 @@ return card;
 function renderCards() {
   initialCards.forEach(item => {
     const cardHtml = createCard(item);
-    photoCards.append(cardHtml);
+    photoCards.prepend(cardHtml);
   })
 }
 
 renderCards();
 
 function addPlace() {
-
-  aboutPopapplace.classList.add('popap_opened');
-  aboutformPlacename.value = cardName.textContent;
-  aboutformLink.value = cardLink.src;
+   aboutPopapPlace.classList.add('popap_opened');
+  
 }
 
-aboutButtoncloseplace.addEventListener('click', popapClose);
+
+
+
+
+// создать
+
+aboutFormNewPlase.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  const newCard = createCard({name: aboutInputNewPlace.value, link: aboutInputNewLink.value});
+  photoCards.prepend(newCard);
+  closePopup();
+  evt.target.reset();
+
+});
+
+
+
+aboutButtonclosePlace.addEventListener('click', popapClose);
 aboutAddbutton.addEventListener('click', addPlace);
 aboutButtonClose.addEventListener('click', popapClose);
 aboutButton.addEventListener('click', popapOpen);
