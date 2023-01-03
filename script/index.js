@@ -69,7 +69,7 @@ const initialCards = [
   }
 ];
 
-    
+  
 
 function createCard(element)  {
 	const card = photoTemplate.cloneNode(true);
@@ -87,8 +87,6 @@ function createCard(element)  {
 return card;
 
 };
-
-
 
 function renderCards() {
   initialCards.forEach(item => {
