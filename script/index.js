@@ -22,7 +22,6 @@ const aboutInputNewLink =  aboutPopapPlace.querySelector('.popap__input_type_lin
 
 
 
-
 function popapOpen() {
   aboutPopapProfile.classList.add('popap_opened');
   aboutformName.value = aboutName.textContent;
@@ -79,15 +78,17 @@ function createCard(element)  {
 
   
   const likeButton = card.querySelector('.photo-plase__hard');
-  likeButton.addEventListener("click", (evt) => activeHard(evt));
+  likeButton.addEventListener("click", activeHard);
 
   const aboutDeleteCard = card.querySelector('.photo-plase__delete-button');
-  aboutDeleteCard.addEventListener("click", (evt) => deleteCard(evt));
+  aboutDeleteCard.addEventListener("click", deleteCard);
 
 
 return card;
 
 };
+
+
 
 function renderCards() {
   initialCards.forEach(item => {
@@ -124,8 +125,6 @@ function deleteCard(event) {
 function activeHard(evt) {
   evt.target.classList.toggle("hard_active");
 };
-
-
 
 
 aboutFormNewPlase.addEventListener('submit', createNewCard);
