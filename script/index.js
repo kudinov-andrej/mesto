@@ -100,18 +100,19 @@ function addPlace() {
 
 
 // создать
-
-aboutFormNewPlase.addEventListener('submit', function(evt) {
+function createNewCard (evt) {
   evt.preventDefault();
   const newCard = createCard({name: aboutInputNewPlace.value, link: aboutInputNewLink.value});
   photoCards.prepend(newCard);
-  closePopup();
+  popapClose(aboutPopapPlace);
   evt.target.reset();
 
-});
+};
+
+// удалить
 
 
-
+aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutButtonclosePlace.addEventListener('click', popapClose);
 aboutAddbutton.addEventListener('click', addPlace);
 aboutButtonClose.addEventListener('click', popapClose);
