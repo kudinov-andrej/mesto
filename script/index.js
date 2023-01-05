@@ -1,7 +1,7 @@
 const aboutButton = document.querySelector('.profile__edit-button');
 const aboutPopapProfile = document.querySelector('.popap_typy_profile');
 const aboutPopapPlace = document.querySelector('.popap_typy_place');
-const aboutButtonclosePlace =  aboutPopapPlace.querySelector('.popap__button-close');
+const aboutButtonclosePlace = aboutPopapPlace.querySelector('.popap__button-close');
 const aboutButtonClose = document.querySelector('.popap__button-close');
 const aboutformName = document.querySelector('.popap__input_type_name');
 const aboutformProfession = document.querySelector('.popap__input_type_profession');
@@ -13,15 +13,15 @@ const aboutAddbutton = document.querySelector('.profile__add-button');
 
 const photoCards = document.querySelector('.plase');
 const photoTemplate = document.querySelector('.photo-template')
-.content
-.querySelector('.photo-plase');
-const aboutFormNewPlase =  aboutPopapPlace.querySelector('.popap__form');
-const aboutButtonSavePlace =  aboutPopapPlace.querySelector('.popap__button');
-const aboutInputNewPlace =  aboutPopapPlace.querySelector('.popap__input_type_place-name');
-const aboutInputNewLink =  aboutPopapPlace.querySelector('.popap__input_type_link');
+  .content
+  .querySelector('.photo-plase');
+const aboutFormNewPlase = aboutPopapPlace.querySelector('.popap__form');
+const aboutButtonSavePlace = aboutPopapPlace.querySelector('.popap__button');
+const aboutInputNewPlace = aboutPopapPlace.querySelector('.popap__input_type_place-name');
+const aboutInputNewLink = aboutPopapPlace.querySelector('.popap__input_type_link');
 
 //переменные для попапа с фото
-const aboutPopupTypyPhoto =  document.querySelector('.popap_typy_photo');
+const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
 const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
 const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__title');
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popup__photo');
@@ -32,7 +32,7 @@ function popapOpen() {
   aboutPopapProfile.classList.add('popap_opened');
   aboutformName.value = aboutName.textContent;
   aboutformProfession.value = aboutProfession.textContent;
-  
+
 }
 
 function popapClose() {
@@ -42,11 +42,11 @@ function popapClose() {
 
 };
 
-function handleFormSubmit (evt) {
-    evt.preventDefault(); 
-    aboutName.textContent = aboutformName.value;
-    aboutProfession.textContent = aboutformProfession.value;
-    popapClose();
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  aboutName.textContent = aboutformName.value;
+  aboutProfession.textContent = aboutformProfession.value;
+  popapClose();
 
 };
 
@@ -78,24 +78,25 @@ const initialCards = [
   }
 ];
 
-  
 
-function createCard(element)  {
-	const card = photoTemplate.cloneNode(true);
-	card.querySelector('.photo-plase__name').textContent = element.name;
+
+function createCard(element) {
+  const card = photoTemplate.cloneNode(true);
+  card.querySelector('.photo-plase__name').textContent = element.name;
+  const photo = card.querySelector('.photo-plase__image');
+  photo.src = element.link
   card.querySelector('.photo-plase__image').src = element.link;
-card.querySelector('.photo-plase__image').src = element.link;
-  
+
   const likeButton = card.querySelector('.photo-plase__hard');
   likeButton.addEventListener("click", activeHard);
 
   const aboutDeleteCard = card.querySelector('.photo-plase__delete-button');
   aboutDeleteCard.addEventListener("click", deleteCard);
 
-  card.addEventListener('click', () => openPicture(element.name, element.link));
+  photo.addEventListener('click', () => openPicture(element.name, element.link));
 
 
-return card;
+  return card;
 
 };
 
@@ -109,15 +110,15 @@ function renderCards() {
 renderCards();
 
 function addPlace() {
-   aboutPopapPlace.classList.add('popap_opened');
-  
+  aboutPopapPlace.classList.add('popap_opened');
+
 }
 
 
 // создать
-function createNewCard (evt) {
+function createNewCard(evt) {
   evt.preventDefault();
-  const newCard = createCard({name: aboutInputNewPlace.value, link: aboutInputNewLink.value});
+  const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
   photoCards.prepend(newCard);
   popapClose(aboutPopapPlace);
   evt.target.reset();
@@ -126,8 +127,8 @@ function createNewCard (evt) {
 
 // удалить
 function deleteCard(event) {
-	const deleteCard = event.target.closest('.photo-plase').remove();
-  
+  const deleteCard = event.target.closest('.photo-plase').remove();
+
 };
 
 // поставить лайк
@@ -139,7 +140,7 @@ function activeHard(evt) {
 
 function OpenPhoto() {
   aboutPopupTypyPhoto.classList.add('popap_opened');
- 
+
 }
 
 
