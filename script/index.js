@@ -9,8 +9,6 @@ const aboutName = document.querySelector('.profile__name');
 const aboutProfession = document.querySelector('.profile__profession');
 const formElement = document.querySelector('.popap__form');
 const aboutAddbutton = document.querySelector('.profile__add-button');
-
-
 const photoCards = document.querySelector('.plase');
 const photoTemplate = document.querySelector('.photo-template')
   .content
@@ -19,37 +17,10 @@ const aboutFormNewPlase = aboutPopapPlace.querySelector('.popap__form');
 const aboutButtonSavePlace = aboutPopapPlace.querySelector('.popap__button');
 const aboutInputNewPlace = aboutPopapPlace.querySelector('.popap__input_type_place-name');
 const aboutInputNewLink = aboutPopapPlace.querySelector('.popap__input_type_link');
-
-//переменные для попапа с фото
 const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
 const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
-const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__title');
+const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popup__photo');
-
-
-
-function popapOpen() {
-  aboutPopapProfile.classList.add('popap_opened');
-  aboutformName.value = aboutName.textContent;
-  aboutformProfession.value = aboutProfession.textContent;
-
-}
-
-function popapClose() {
-  aboutPopapProfile.classList.remove('popap_opened');
-  aboutPopapPlace.classList.remove('popap_opened');
-  aboutPopupTypyPhoto.classList.remove('popap_opened');
-
-};
-
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  aboutName.textContent = aboutformName.value;
-  aboutProfession.textContent = aboutformProfession.value;
-  popapClose();
-
-};
-
 
 const initialCards = [
   {
@@ -79,13 +50,35 @@ const initialCards = [
 ];
 
 
+function popapOpen() {
+  aboutPopapProfile.classList.add('popap_opened');
+  aboutformName.value = aboutName.textContent;
+  aboutformProfession.value = aboutProfession.textContent;
+
+}
+
+function popapClose() {
+  aboutPopapProfile.classList.remove('popap_opened');
+  aboutPopapPlace.classList.remove('popap_opened');
+  aboutPopupTypyPhoto.classList.remove('popap_opened');
+
+};
+
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  aboutName.textContent = aboutformName.value;
+  aboutProfession.textContent = aboutformProfession.value;
+  popapClose();
+
+};
+
 
 function createCard(element) {
   const card = photoTemplate.cloneNode(true);
   card.querySelector('.photo-plase__name').textContent = element.name;
   const photo = card.querySelector('.photo-plase__image');
-  photo.src = element.link
-  card.querySelector('.photo-plase__image').src = element.link;
+  photo.src = element.link;
+  photo.alt = element.name;
 
   const likeButton = card.querySelector('.photo-plase__hard');
   likeButton.addEventListener("click", activeHard);
@@ -94,7 +87,6 @@ function createCard(element) {
   aboutDeleteCard.addEventListener("click", deleteCard);
 
   photo.addEventListener('click', () => openPicture(element.name, element.link));
-
 
   return card;
 
@@ -105,17 +97,16 @@ function renderCards() {
     const cardHtml = createCard(item);
     photoCards.prepend(cardHtml);
   })
-}
+};
 
 renderCards();
 
 function addPlace() {
   aboutPopapPlace.classList.add('popap_opened');
 
-}
+};
 
 
-// создать
 function createNewCard(evt) {
   evt.preventDefault();
   const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
@@ -125,27 +116,20 @@ function createNewCard(evt) {
 
 };
 
-// удалить
 function deleteCard(event) {
   const deleteCard = event.target.closest('.photo-plase').remove();
 
 };
 
-// поставить лайк
 function activeHard(evt) {
   evt.target.classList.toggle("hard_active");
 };
 
-// открыть попап с фото
 
 function OpenPhoto() {
   aboutPopupTypyPhoto.classList.add('popap_opened');
 
-}
-
-
-
-
+};
 
 
 function openPicture(name, link) {
