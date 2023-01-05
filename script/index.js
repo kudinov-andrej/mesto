@@ -20,7 +20,7 @@ const aboutInputNewLink = aboutPopapPlace.querySelector('.popap__input_type_link
 const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
 const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
 const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
-const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popup__photo');
+const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 
 const initialCards = [
   {
