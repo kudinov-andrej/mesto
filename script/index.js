@@ -22,45 +22,22 @@ const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-
 const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 
-function popapOpen() {
-  aboutPopapProfile.classList.add('popap_opened');
+function openPopup(element) {
+  element.classList.add('popap_opened');
+ 
+};
+
+
+function closePopup(element) {
+  element.classList.remove('popap_opened');
+ 
+};
+
+function createProfile() {
   aboutformName.value = aboutName.textContent;
   aboutformProfession.value = aboutProfession.textContent;
-
-}
-
-function popapClose() {
-  aboutPopapProfile.classList.remove('popap_opened');
-  aboutPopapPlace.classList.remove('popap_opened');
-  aboutPopupTypyPhoto.classList.remove('popap_opened');
 
 };
 
@@ -68,11 +45,37 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   aboutName.textContent = aboutformName.value;
   aboutProfession.textContent = aboutformProfession.value;
-  popapClose();
+  closePopup(aboutPopapProfile);
 
 };
 
 
+function deleteCard(event) {
+  const deleteCard = event.target.closest('.photo-plase').remove();
+
+};
+
+function activeHard(evt) {
+  evt.target.classList.toggle("hard_active");
+};
+
+
+function openPicture(name, link) {
+  aboutPopupPhoto.alt = name;
+  aboutPopupPhoto.src = link;
+  aboutPopupPhotoTitle.textContent = name;
+  openPopup(aboutPopupTypyPhoto);
+};
+
+
+function createNewCard(evt) {
+  evt.preventDefault();
+  const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
+  photoCards.prepend(newCard);
+  closePopup(aboutPopapPlace);
+  evt.target.reset();
+
+};
 function createCard(element) {
   const card = photoTemplate.cloneNode(true);
   card.querySelector('.photo-plase__name').textContent = element.name;
@@ -99,50 +102,13 @@ function renderCards() {
   })
 };
 
-renderCards();
-
-function addPlace() {
-  aboutPopapPlace.classList.add('popap_opened');
-
-};
-
-
-function createNewCard(evt) {
-  evt.preventDefault();
-  const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
-  photoCards.prepend(newCard);
-  popapClose(aboutPopapPlace);
-  evt.target.reset();
-
-};
-
-function deleteCard(event) {
-  const deleteCard = event.target.closest('.photo-plase').remove();
-
-};
-
-function activeHard(evt) {
-  evt.target.classList.toggle("hard_active");
-};
-
-
-function OpenPhoto() {
-  aboutPopupTypyPhoto.classList.add('popap_opened');
-
-};
-
-
-function openPicture(name, link) {
-  aboutPopupPhoto.alt = name;
-  aboutPopupPhoto.src = link;
-  aboutPopupPhotoTitle.textContent = name;
-  OpenPhoto();
-};
-
-aboutPopupButtonClose.addEventListener('click', popapClose);
+aboutPopupButtonClose.addEventListener('click', () => closePopup(aboutPopupTypyPhoto));
 aboutFormNewPlase.addEventListener('submit', createNewCard);
-aboutButtonclosePlace.addEventListener('click', popapClose);
-aboutAddbutton.addEventListener('click', addPlace);
-aboutButtonClose.addEventListener('click', popapClose);
-aboutButton.addEventListener('click', popapOpen);
+aboutButtonclosePlace.addEventListener('click', () => closePopup(aboutPopapPlace));
+aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
+aboutButtonClose.addEventListener('click', () => closePopup(aboutPopapProfile));
+aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
 formElement.addEventListener('submit', handleFormSubmit); 
+
+
+renderCards();
