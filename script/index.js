@@ -23,6 +23,29 @@ const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-na
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const popup = document.querySelector('.popap');
 
+/*
+
+enableValidation({
+  formSelector: '.popap__form',
+  inputSelector: '.popap__input',
+  submitButtonSelector: '.popap__button',
+  inactiveButtonClass: 'popap__button_disabled',
+  inputErrorClass: 'popap__error',
+  errorClass: 'popup__error_visible'
+}); 
+
+
+
+
+*/
+
+
+
+
+
+
+
+
 
 
 function openPopup(element) {
