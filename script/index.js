@@ -21,19 +21,23 @@ const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
 const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
 const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
+const popup = document.querySelector('.popap');
 
 
 
 function openPopup(element) {
   element.classList.add('popap_opened');
- 
+
 };
 
 
 function closePopup(element) {
   element.classList.remove('popap_opened');
- 
+
+
 };
+
+
 
 function createProfile() {
   aboutformName.value = aboutName.textContent;
@@ -102,13 +106,31 @@ function renderCards() {
   })
 };
 
-aboutPopupButtonClose.addEventListener('click', () => closePopup(aboutPopupTypyPhoto));
+
+
+
+aboutPopapProfile.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popap_typy_profile') || evt.target.classList.contains('popap__button-close')) {
+    closePopup(aboutPopapProfile)
+  }
+});
+
+aboutPopapPlace.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popap_typy_place') || evt.target.classList.contains('popap__button-close')) {
+    closePopup(aboutPopapPlace)
+  }
+});
+
+aboutPopupTypyPhoto.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popap_typy_photo') || evt.target.classList.contains('popap__button-close')) {
+    closePopup(aboutPopupTypyPhoto)
+  }
+});
+
 aboutFormNewPlase.addEventListener('submit', createNewCard);
-aboutButtonclosePlace.addEventListener('click', () => closePopup(aboutPopapPlace));
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
-aboutButtonClose.addEventListener('click', () => closePopup(aboutPopapProfile));
 aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
-formElement.addEventListener('submit', handleFormSubmit); 
+formElement.addEventListener('submit', handleFormSubmit);
 
 
 renderCards();
