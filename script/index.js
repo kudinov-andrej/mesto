@@ -23,27 +23,57 @@ const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-na
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const popup = document.querySelector('.popap');
 
-/*
 
-enableValidation({
-  formSelector: '.popap__form',
-  inputSelector: '.popap__input',
-  submitButtonSelector: '.popap__button',
-  inactiveButtonClass: 'popap__button_disabled',
-  inputErrorClass: 'popap__error',
-  errorClass: 'popup__error_visible'
-}); 
+const inputElement = formElement.querySelector('.popap__input');
 
 
 
+function showInputError(formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = errorMessage;
+  
+};
 
-*/
+function hideInputError(formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.textContent = " ";
+  
+};
 
 
 
+function isValid (formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+        
+    showInputError(formElement, inputElement,  inputElement.validationMessage);
+  } else {
+
+    hideInputError(formElement, inputElement,  inputElement.validationMessage);
+    
+  }
+};
+
+
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popap__input'));
+  inputList.forEach((inputElement) => {
+  inputElement.addEventListener('input', () => {
+    isValid(formElement, inputElement)
+    });
+  });
+}; 
+
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popap__form'));
+ 
+  formList.forEach((formElement) => {
+    setEventListeners(formElement);
+  });
+};
 
 
 
+enableValidation(); 
 
 
 
@@ -51,14 +81,41 @@ enableValidation({
 function openPopup(element) {
   element.classList.add('popap_opened');
 
+  setEventListenerClosePopup(element)
+
 };
 
+function setEventListenerClosePopup(element) {
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closePopup(element)
+    }
+    });
+    
+    element.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popap') || evt.target.classList.contains('popap__button-close')) {
+        closePopup(element)
+      }
+    });
+
+}
+
+
+// снять обработчики с функций
 
 function closePopup(element) {
   element.classList.remove('popap_opened');
+  
+}
 
 
+function disableButton(buttonElement){
+
+  buttonElement.setAttribute("disable", "disable",) 
 };
+
+
 
 
 
@@ -130,25 +187,6 @@ function renderCards() {
 };
 
 
-
-
-aboutPopapProfile.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popap_typy_profile') || evt.target.classList.contains('popap__button-close')) {
-    closePopup(aboutPopapProfile)
-  }
-});
-
-aboutPopapPlace.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popap_typy_place') || evt.target.classList.contains('popap__button-close')) {
-    closePopup(aboutPopapPlace)
-  }
-});
-
-aboutPopupTypyPhoto.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popap_typy_photo') || evt.target.classList.contains('popap__button-close')) {
-    closePopup(aboutPopupTypyPhoto)
-  }
-});
 
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));

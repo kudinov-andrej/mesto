@@ -34,10 +34,10 @@
       <button class="popap__button-close" type = "button"></button>
       <h2 class="popap__title">Редактировать профиль</h2>
       <form class="popap__form" action="#" name ="popap-form" novalidate>
-        <input type="text" class="popap__input popap__input_type_name" value="Жак-Ив Кусто" name = "popap-name" required minlength="2" maxlength="40"/>
-        <span class="popap__error"></span>
-        <input type="text" class="popap__input popap__input_type_profession" value="Исследователь океана" name = "popap-profession" required minlength="2" maxlength="200"/>
-        <span class="popap__error"></span>
+        <input type="text" id="popap__input-name" class="popap__input popap__input_type_name" value="Жак-Ив Кусто" name = "popap-name" required minlength="2" maxlength="40"/>
+        <span class="popap__error popap__input-name-error"></span>
+        <input type="text" id="popap__input-profession" class="popap__input popap__input_type_profession" value="Исследователь океана" name = "popap-profession" required minlength="2" maxlength="200"/>
+        <span class="popap__error popap__input-profession-error"></span>
         <input type="submit" class="popap__button" value="Сохранить" />
       </form>
     </div>
@@ -47,10 +47,10 @@
       <button class="popap__button-close" type = "button"></button>
       <h2 class="popap__title">Новое место</h2>
       <form class="popap__form popap__form_type_new-place" action="#" name ="popap-form" novalidate>
-        <input type="text" class="popap__input popap__input_type_place-name popap__input_type_new-place" value="" name = "popap-name" placeholder="Название" required minlength="2" maxlength="30"/>
-        <span class="popap__error"></span>
-        <input type="url" class="popap__input popap__input_type_link popap__input_type_new-link" value="" name = "popap-profession" placeholder="Ссылка на картинку" required/>
-        <span class="popap__error"></span>
+        <input type="text" id="popap__input-place" class="popap__input popap__input_type_place-name popap__input_type_new-place" value="" name = "popap-name" placeholder="Название" required minlength="2" maxlength="30"/>
+        <span class="popap__error popap__input-place-error"></span>
+        <input type="url" id="popap__input-link" class="popap__input popap__input_type_link popap__input_type_new-link" value="" name = "popap-profession" placeholder="Ссылка на картинку" required/>
+        <span class="popap__error popap__input-link-error"></span>
         <input type="submit" class="popap__button popap__button_type_save" value="Создать" />
       </form>
     </div>
