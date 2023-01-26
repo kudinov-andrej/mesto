@@ -25,10 +25,6 @@ const initialCards = [
     }
   ];
 
-  const configValidation = {
-    formElement: '.popup__form',
-    inputElement: '.popup__input',
-    buttonElement: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popap__error',
-  }; 
+
+  
+
