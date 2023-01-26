@@ -26,5 +26,10 @@ const initialCards = [
   ];
 
 
-  
-
+  const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popap__button_disabled',
+    inputErrorClass: 'popap__error',
+  }; 
