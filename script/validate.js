@@ -55,7 +55,7 @@
   }; 
   
   
-  function enableValidation(config) {
+  function enableValidation() {
     const formList = Array.from(document.querySelectorAll('.popap__form'));
     formList.forEach((formElement) => {
       const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
