@@ -7,13 +7,15 @@ const aboutformName = document.querySelector('.popap__input_type_name');
 const aboutformProfession = document.querySelector('.popap__input_type_profession');
 const aboutName = document.querySelector('.profile__name');
 const aboutProfession = document.querySelector('.profile__profession');
-const formElement = document.querySelector('.popap__form');
+const formElementProfile = document.querySelector('.popap__form_type_profile');
 const aboutAddbutton = document.querySelector('.profile__add-button');
 const photoCards = document.querySelector('.plase');
 const photoTemplate = document.querySelector('.photo-template')
   .content
   .querySelector('.photo-plase');
-const aboutFormNewPlase = aboutPopapPlace.querySelector('.popap__form');
+  console.log(formElementProfile)
+  
+const aboutFormNewPlase = aboutPopapPlace.querySelector('.popap__form_type_new-place');
 const aboutButtonSavePlace = aboutPopapPlace.querySelector('.popap__button');
 const aboutInputNewPlace = aboutPopapPlace.querySelector('.popap__input_type_place-name');
 const aboutInputNewLink = aboutPopapPlace.querySelector('.popap__input_type_link');
@@ -23,7 +25,7 @@ const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-na
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const popup = document.querySelector('.popap');
 const buttonElement = document.querySelector('.popap__button');
-const inputElement = formElement.querySelector('.popap__input');
+const inputElement = formElementProfile.querySelector('.popap__input'); 
 
 
 
@@ -136,7 +138,7 @@ function renderCards() {
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
 aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
-formElement.addEventListener('submit', handleFormSubmit);
+formElementProfile.addEventListener('submit', handleFormSubmit);
 
 
 renderCards();
