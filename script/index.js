@@ -9,7 +9,7 @@ const aboutName = document.querySelector('.profile__name');
 const aboutProfession = document.querySelector('.profile__profession');
 const formElementProfile = document.querySelector('.popap__form_type_profile');
 const aboutAddbutton = document.querySelector('.profile__add-button');
-const photoCards = document.querySelector('.plase');
+const cardsContainer = document.querySelector('.plase');
 const photoTemplate = document.querySelector('.photo-template')
   .content
   .querySelector('.photo-plase');
@@ -26,6 +26,7 @@ const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const popup = document.querySelector('.popap');
 const buttonElement = document.querySelector('.popap__button');
 const inputElement = formElementProfile.querySelector('.popap__input'); 
+ 
 
 
 
@@ -33,34 +34,29 @@ const inputElement = formElementProfile.querySelector('.popap__input');
 
 function openPopup(element) {
   element.classList.add('popap_opened');
-
-  setEventListenerClosePopup(element);
-
+  document.addEventListener('keydown', closeByEsc)
+  document.addEventListener('click', closeByOverlay)
 };
 
-function setEventListenerClosePopup(element) {
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closePopup(element);
-    }
-    });
-    
-    element.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popap') || evt.target.classList.contains('popap__button-close')) {
-        closePopup(element);
+function closeByOverlay(evt) {
+           if (evt.target.classList.contains('popap') || evt.target.classList.contains('popap__button-close')) {
+            const openedPopup = document.querySelector('.popap_opened');
+           closePopup(openedPopup);
       }
-    });
+    };
 
-}
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popap_opened');
+    closePopup(openedPopup); 
+  }
+} 
 
 
 function closePopup(element) {
   element.classList.remove('popap_opened');
-  element.removeEventListener('click', () => setEventListenerClosePopup(element)); 
-  element.removeEventListener('keydown', () => setEventListenerClosePopup(element)); 
- 
- 
+  document.removeEventListener('keydown', closeByEsc);
+  
 }
 
 
@@ -68,15 +64,16 @@ function closePopup(element) {
 function createProfile() {
   aboutformName.value = aboutName.textContent;
   aboutformProfession.value = aboutProfession.textContent;
+ resetValidition(formElementProfile, config);
 
 };
+
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
   aboutName.textContent = aboutformName.value;
-  aboutProfession.textContent = aboutformProfession.value;
+  aboutProfession.textContent = aboutformProfession.value; 
   closePopup(aboutPopapProfile);
- 
 
 };
 
@@ -102,10 +99,11 @@ function openPicture(name, link) {
 function createNewCard(evt) {
   evt.preventDefault();
   const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
-  photoCards.prepend(newCard);
+  cardsContainer.prepend(newCard);
   closePopup(aboutPopapPlace);
   evt.target.reset();
-
+  evt.submitter.classList.add('.popap__button_disabled')
+  evt.submitter.disabled = true; 
 };
 function createCard(element) {
   const card = photoTemplate.cloneNode(true);
@@ -129,7 +127,7 @@ function createCard(element) {
 function renderCards() {
   initialCards.forEach(item => {
     const cardHtml = createCard(item);
-    photoCards.prepend(cardHtml);
+    cardsContainer.prepend(cardHtml);
   })
 };
 
@@ -138,6 +136,7 @@ function renderCards() {
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
 aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
+aboutButton.addEventListener('click', () => createProfile());
 formElementProfile.addEventListener('submit', handleFormSubmit);
 
 

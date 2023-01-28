@@ -3,7 +3,7 @@ const config = {
   inputSelector: '.popap__input',
   submitButtonSelector: '.popap__button',
   inactiveButtonClass: 'popap__button_disabled',
- // inputErrorClass: '.popap__error',
+
 }; 
   
   function setEventListeners(formElement, config) {
@@ -29,6 +29,10 @@ const config = {
     }
     
   };
+
+
+
+
   
   function hasInvalidInput(inputList) {
      return inputList.some((inputElement) => {
@@ -47,6 +51,21 @@ const config = {
     errorElement.textContent = " ";
   
     
+  };
+
+  function resetError (formElement, inputElement, config) {
+    const error = formElement.querySelector(`.${inputElement.id}-error`);
+    error.textContent = " ";
+  };
+
+ 
+  function resetValidition(formElement, config) {
+    const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+    inputList.forEach(function (inputElement){
+      hideInputError(formElement, inputElement,  inputElement.validationMessage);
+      toggleButtonState(inputList, buttonElement, config);
+    })
   };
 
   
