@@ -1,4 +1,4 @@
-.popup__save-button_disabled:disabled {
+.popap__button_type_disabled:disabled {
     background-color: transparent;
     color: black;
     opacity: 0.2;
