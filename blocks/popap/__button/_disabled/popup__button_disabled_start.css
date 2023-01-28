@@ -1,4 +1,4 @@
-.popup__button_disabled-start:disabled {
+.popup__button_disabled_start:disabled {
     background-color: transparent;
     color: black;
     opacity: 0.2;
