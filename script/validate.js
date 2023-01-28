@@ -1,11 +1,4 @@
-const config = {
-  formSelector: '.popap__form',
-  inputSelector: '.popap__input',
-  submitButtonSelector: '.popap__button',
-  inactiveButtonClass: 'popap__button_disabled',
-
-}; 
-  
+ 
   function setEventListeners(formElement, config) {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);

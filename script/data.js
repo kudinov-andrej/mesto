@@ -25,5 +25,11 @@ const initialCards = [
     }
   ];
 
-
+  const config = {
+    formSelector: '.popap__form',
+    inputSelector: '.popap__input',
+    submitButtonSelector: '.popap__button',
+    inactiveButtonClass: 'popap__button_disabled',
+  
+  }; 
  
