@@ -15,6 +15,7 @@
 @import url(./../blocks/profile/__add-button/profile__add-button.css);
 @import url(./../blocks/popap/popap.css);
 @import url(./../blocks/popap/__photo/popap__photo.css);
+@import url(./../blocks/popap/_typy/popap_typy_photo.css);
 @import url(./../blocks/popap/_opened/popap_opened.css);
 @import url(./../blocks/popap/__photo-name/popap__photo-name.css);
 @import url(./../blocks/popap/__photo-conteiner/popap__photo-conteiner.css);
