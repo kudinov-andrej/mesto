@@ -23,7 +23,6 @@ const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
 const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
 const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
-const popup = document.querySelector('.popap');
 const buttonElement = document.querySelector('.popap__button');
 const inputElement = formElementProfile.querySelector('.popap__input'); 
  
