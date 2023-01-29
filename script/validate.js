@@ -56,9 +56,9 @@
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     inputList.forEach(function (inputElement){
-      hideInputError(formElement, inputElement,  inputElement.validationMessage);
-      toggleButtonState(inputList, buttonElement, config);
-    })
+    hideInputError(formElement, inputElement,  inputElement.validationMessage);
+          });
+    toggleButtonState(inputList, buttonElement, config);
   };
 
   
@@ -76,7 +76,6 @@
   function enableValidation(config) {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
     formList.forEach((formElement) => {
-      const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
       setEventListeners(formElement, config);
     });
     

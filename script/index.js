@@ -35,13 +35,13 @@ const inputElement = formElementProfile.querySelector('.popap__input');
 function openPopup(element) {
   element.classList.add('popap_opened');
   document.addEventListener('keydown', closeByEsc)
-  document.addEventListener('click', closeByOverlay)
+  
 };
+
 
 function closeByOverlay(evt) {
            if (evt.target.classList.contains('popap') || evt.target.classList.contains('popap__button-close')) {
-            const openedPopup = document.querySelector('.popap_opened');
-           closePopup(openedPopup);
+           closePopup(evt.currentTarget);
       }
     };
 
@@ -130,9 +130,9 @@ function renderCards() {
     cardsContainer.prepend(cardHtml);
   })
 };
-
-
-
+aboutPopapPlace.addEventListener('click', closeByOverlay)
+aboutPopupTypyPhoto.addEventListener('click', closeByOverlay)
+aboutPopapProfile.addEventListener('click', closeByOverlay)
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
 aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
