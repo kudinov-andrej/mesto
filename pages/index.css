@@ -28,6 +28,7 @@
 @import url(./../blocks/popap/__button-close/popap__button-close.css);
 @import url(./../blocks/popap/__button/_disabled/popap__button_disabled.css);
 @import url(./../blocks/popap/__button/_type/popap__button_type_disabled.css);
+@import url(./../blocks/popap/__error/_visible/popap__error_visible.css);
 @import url(./../blocks/plase/plase.css);
 @import url(./../blocks/photo-plase/photo-plase.css);
 @import url(./../blocks/photo-plase/__delete-button/photo-plase__delete-button.css);
