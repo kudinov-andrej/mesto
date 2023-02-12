@@ -4,8 +4,8 @@ export default class FormValidator {
   constructor(config, formElement, resetValidition) {
     this._config = config;
     this._formElement = formElement;
-   
-    
+
+
   }
 
   enableValidation() {
@@ -86,7 +86,7 @@ export default class FormValidator {
     }
   };
 
-  };
- 
+};
+
 
 

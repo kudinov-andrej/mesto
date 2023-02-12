@@ -1,7 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards, config } from "./data.js";
-import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement} from "./data.js";
+import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement } from "./data.js";
 
 function openPopup(element) {
   element.classList.add('popap_opened');
@@ -55,16 +55,6 @@ function handleFormSubmit(evt) {
 
 
 
-function deleteCard(event) {
-  const deleteCard = event.target.closest('.photo-plase').remove();
- 
-};
-
-function activeHard(evt) {
-  evt.target.classList.toggle("hard_active");
-};
-
-
 
 function openPicture(name, link) {
   aboutPopupPhoto.alt = name;
@@ -83,7 +73,7 @@ function createNewCard(evt) {
   evt.submitter.classList.add('.popap__button_disabled')
   evt.submitter.disabled = true;
 
-  
+
 };
 
 
