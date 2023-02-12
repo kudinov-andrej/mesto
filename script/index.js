@@ -59,14 +59,19 @@ function closePopup(element) {
 }
 
 
-
 function createProfile() {
   aboutformName.value = aboutName.textContent;
   aboutformProfession.value = aboutProfession.textContent;
-  resetValidition(formElementProfile, config);
+  profileValidator.clearErrorForm();
 
 };
 
+function createPlase() {
+  aboutInputNewPlace.value = "";
+  aboutInputNewLink.value = "";
+  placeValidator.clearErrorForm();
+
+};
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -196,6 +201,7 @@ aboutPopupTypyPhoto.addEventListener('click', closeByOverlay)
 aboutPopapProfile.addEventListener('click', closeByOverlay)
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
+aboutAddbutton.addEventListener('click', () => createPlase());
 aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
 aboutButton.addEventListener('click', () => createProfile());
 formElementProfile.addEventListener('submit', handleFormSubmit);
