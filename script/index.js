@@ -1,7 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards, config } from "./data.js";
-import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement } from "./data.js";
+import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement, popups } from "./data.js";
 
 function openPopup(element) {
   element.classList.add('popap_opened');
@@ -101,16 +101,21 @@ profileValidator.enableValidation();
 placeValidator.enableValidation();
 renderStartCards()
 
+aboutAddbutton.addEventListener('click', () => {
+  openPopup(aboutPopapPlace)
+  createPlase()
+});
 
+aboutButton.addEventListener('click', () => {
+  openPopup(aboutPopapProfile)
+  createProfile()
+});
 
-aboutPopapPlace.addEventListener('click', closeByOverlay)
-aboutPopupTypyPhoto.addEventListener('click', closeByOverlay)
-aboutPopapProfile.addEventListener('click', closeByOverlay)
+popups.forEach((popup) =>{  
+  popup.addEventListener('mousedown', closeByOverlay) 
+})
+
 aboutFormNewPlase.addEventListener('submit', createNewCard);
-aboutAddbutton.addEventListener('click', () => openPopup(aboutPopapPlace));
-aboutAddbutton.addEventListener('click', () => createPlase());
-aboutButton.addEventListener('click', () => openPopup(aboutPopapProfile));
-aboutButton.addEventListener('click', () => createProfile());
 formElementProfile.addEventListener('submit', handleFormSubmit);
 
 

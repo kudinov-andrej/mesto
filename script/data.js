@@ -65,6 +65,7 @@ const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-na
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const buttonElement = document.querySelector('.popap__button');
 const inputElement = formElementProfile.querySelector('.popap__input');
+const popups = document.querySelectorAll('.popap')
 
-export { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement };
+export { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement, popups };
 export { initialCards, config }; 
