@@ -1,11 +1,23 @@
-const config = {
+ const config = {
   formSelector: '.popap__form',
+  formSelectorPlace: '.popap__form_type_new-place',
+  formSelectorProfile: '.popap__form_type_profile',
   inputSelector: '.popap__input',
   errorClassVisible: 'popap__error_visible',
   submitButtonSelector: '.popap__button',
   inactiveButtonClass: 'popap__button_disabled',
-  
-}; 
+
+
+};
+
+/*
+
+class FormValidator {
+  constructor(config, formElement) {
+    
+  }
+
+ */
 
  
   function setEventListeners(formElement, config) {
@@ -95,5 +107,8 @@ const config = {
     
   };
       
+
+
   enableValidation(config);
+  
   
