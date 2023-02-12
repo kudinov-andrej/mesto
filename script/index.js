@@ -1,35 +1,7 @@
-
-const aboutButton = document.querySelector('.profile__edit-button');
-const aboutPopapProfile = document.querySelector('.popap_typy_profile');
-const aboutPopapPlace = document.querySelector('.popap_typy_place');
-const aboutButtonclosePlace = aboutPopapPlace.querySelector('.popap__button-close');
-const aboutButtonClose = document.querySelector('.popap__button-close');
-const aboutformName = document.querySelector('.popap__input_type_name');
-const aboutformProfession = document.querySelector('.popap__input_type_profession');
-const aboutName = document.querySelector('.profile__name');
-const aboutProfession = document.querySelector('.profile__profession');
-const formElementProfile = document.querySelector('.popap__form_type_profile');
-const aboutAddbutton = document.querySelector('.profile__add-button');
-const cardsContainer = document.querySelector('.plase');
-const photoTemplate = document.querySelector('.photo-template')
-  .content
-  .querySelector('.photo-plase');
-
-const aboutFormNewPlase = aboutPopapPlace.querySelector('.popap__form_type_new-place');
-const aboutButtonSavePlace = aboutPopapPlace.querySelector('.popap__button');
-const aboutInputNewPlace = aboutPopapPlace.querySelector('.popap__input_type_place-name');
-const aboutInputNewLink = aboutPopapPlace.querySelector('.popap__input_type_link');
-const aboutPopupTypyPhoto = document.querySelector('.popap_typy_photo');
-const aboutPopupButtonClose = aboutPopupTypyPhoto.querySelector('.popap__button-close');
-const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-name');
-const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
-const buttonElement = document.querySelector('.popap__button');
-const inputElement = formElementProfile.querySelector('.popap__input');
-
-
-
-
-
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { initialCards, config } from "./data.js";
+import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement} from "./data.js";
 
 function openPopup(element) {
   element.classList.add('popap_opened');
@@ -102,9 +74,6 @@ function openPicture(name, link) {
 };
 
 
-
-
-
 function createNewCard(evt) {
   evt.preventDefault();
   const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
@@ -116,65 +85,6 @@ function createNewCard(evt) {
 
   
 };
-
- 
- 
-class Card {
- constructor(item, templateSelector, openPicture) {
-    this._name = item.name;
-    this._link = item.link;
-    this._selector = templateSelector;
-    this._openPicture = openPicture;
-    this._deleteCard = this._deleteCard.bind(this);
-    this._activeHard = this._activeHard.bind(this);
-   
-
-  } 
-
-
-  _getElementFromTemplate() {
-    return document.querySelector(this._selector).content.querySelector('.photo-plase')
-    
-    
-  }
-
-
-  _addEventListeners() {
-    this._element.querySelector('.photo-plase__delete-button').addEventListener('click', () =>  this._deleteCard());
-    this._element.querySelector('.photo-plase__hard').addEventListener('click', () =>  this._activeHard());
-    this._element.querySelector('.photo-plase__image').addEventListener('click', () => {
-    this._openPicture(this._name, this._link);
-  
-
-    });
-  }
-
-  _deleteCard() {
-    this._element.remove();
-
-   
-  };
-
-  _activeHard(evt) {
-    this._buttonLike.classList.toggle("hard_active");
-
-  };
-
-
-
-  createCard() {
-    this._element = this._getElementFromTemplate().cloneNode(true);
-    this._addEventListeners();
-    this._element.querySelector('.photo-plase__name').textContent = this._name;
-    this._element.querySelector('.photo-plase__image').src = this._link
-    this._element.querySelector('.photo-plase__image').alt = this._name
-    this._buttonLike = this._element.querySelector('.photo-plase__hard');
-        return this._element;
-
-  };
-
-  
-}
 
 
 function createCard(item) {
@@ -193,7 +103,14 @@ function appendCard(item) {
   cardsContainer.append(createCard(item));
 }
 
+
+
+const profileValidator = new FormValidator(config, aboutPopapProfile);
+const placeValidator = new FormValidator(config, aboutPopapPlace);
+profileValidator.enableValidation();
+placeValidator.enableValidation();
 renderStartCards()
+
 
 
 aboutPopapPlace.addEventListener('click', closeByOverlay)
