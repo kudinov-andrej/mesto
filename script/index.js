@@ -1,74 +1,93 @@
+//import Section from "./Section.js";
+
 import Card from "./Card.js";
+import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards, config } from "./data.js";
+import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
 import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement, popups } from "./data.js";
 
-function openPopup(element) {
-  element.classList.add('popap_opened');
-  document.addEventListener('keydown', closeByEsc)
 
-};
-
-
-function closeByOverlay(evt) {
-  if (evt.target.classList.contains('popap') || evt.target.classList.contains('popap__button-close')) {
-    closePopup(evt.currentTarget);
+/*
+class Section {
+  constructor({data, render} , containerSelector) {
+    this._renderedItems = data;
+    this._createCardClass = render;
+    this._containerSelector = containerSelector;
+    console.log( this._containerSelector)
   }
-};
 
-function closeByEsc(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popap_opened');
-    closePopup(openedPopup);
+  appendCard(item) {
+    this._containerSelector.append(item);
+  }
+
+  renderItems() {
+    this._renderedItems.forEach(item => {
+      this.appendCard(item);
+      console.log(this._renderedItems)
+    });
   }
 }
 
 
-function closePopup(element) {
-  element.classList.remove('popap_opened');
-  document.removeEventListener('keydown', closeByEsc);
+const cardList = new Section({data: initialCards, render: createCardClass}, cardsContainer)
+  
 
+
+cardList.renderItems();
+
+
+*/
+
+//создание класса
+
+function createCard(item) {
+  const card = new Card(item, '.photo-template', openPicture);
+  return card.createCard();
 }
 
 
-function createProfile() {
-  aboutformName.value = aboutName.textContent;
-  aboutformProfession.value = aboutProfession.textContent;
-  profileValidator.clearErrorForm();
 
+// новая функция renderItems
+
+function renderStartCards(item) {
+  initialCards.forEach(item => {
+    appendCard(item);
+  });
 };
 
-function createPlase() {
-  aboutInputNewPlace.value = "";
-  aboutInputNewLink.value = "";
-  placeValidator.clearErrorForm();
+// новая функция appendCard
 
-};
+function appendCard(item) {
+  cardsContainer.append(createCard(item));
+}
+
+
 
 function handleFormSubmit(evt) {
-  evt.preventDefault();
   aboutName.textContent = aboutformName.value;
   aboutProfession.textContent = aboutformProfession.value;
-  closePopup(aboutPopapProfile);
+  popupProfile.closePopup();
 
 };
-
-
 
 
 function openPicture(name, link) {
   aboutPopupPhoto.alt = name;
   aboutPopupPhoto.src = link;
   aboutPopupPhotoTitle.textContent = name;
-  openPopup(aboutPopupTypyPhoto);
+  popupPhoto.openPopup();
 };
+
 
 
 function createNewCard(evt) {
   evt.preventDefault();
   const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
   cardsContainer.prepend(newCard);
-  closePopup(aboutPopapPlace);
+  popupPlace.closePopup();
   evt.target.reset();
   evt.submitter.classList.add('.popap__button_disabled')
   evt.submitter.disabled = true;
@@ -77,45 +96,43 @@ function createNewCard(evt) {
 };
 
 
-function createCard(item) {
-  const card = new Card(item, '.photo-template', openPicture);
-  return card.createCard();
-}
-
-
-function renderStartCards(item) {
-  initialCards.forEach(item => {
-    appendCard(item);
-  });
-};
-
-function appendCard(item) {
-  cardsContainer.append(createCard(item));
-}
-
-
-
 const profileValidator = new FormValidator(config, aboutPopapProfile);
 const placeValidator = new FormValidator(config, aboutPopapPlace);
 profileValidator.enableValidation();
 placeValidator.enableValidation();
-renderStartCards()
+const popupProfile = new Popup(aboutPopapProfile);
+popupProfile.setEventListeners();
+const popupPlace = new Popup(aboutPopapPlace);
+popupPlace.setEventListeners();
+const popupPhoto = new PopupWithImage(aboutPopupTypyPhoto);
+popupPhoto.setEventListeners();
+const popupProfileForm = new PopupWithForm(aboutPopapProfile, handleFormSubmit);
+popupProfileForm.setEventListeners();
+const popupPlaceForm = new PopupWithForm(aboutPopapPlace, handleFormSubmit);
+popupPlaceForm.setEventListeners();
+const user = new UserInfo({ userNameElement: aboutName, userInfoElement: aboutProfession }); 
 
-aboutAddbutton.addEventListener('click', () => {
-  openPopup(aboutPopapPlace)
-  createPlase()
-});
+
 
 aboutButton.addEventListener('click', () => {
-  openPopup(aboutPopapProfile)
-  createProfile()
+  profileValidator.clearErrorForm(aboutPopapProfile);
+  popupProfile.openPopup()
+  const userData = user.getUserInfo();
+  aboutformName.value = userData.name;
+  aboutformProfession.value = userData.about;
+  
+  
 });
 
-popups.forEach((popup) =>{  
-  popup.addEventListener('mousedown', closeByOverlay) 
-})
+aboutAddbutton.addEventListener('click', () => {
+  popupPlace.openPopup();
+  placeValidator.clearErrorForm();
+});
 
+
+
+renderStartCards()
 aboutFormNewPlase.addEventListener('submit', createNewCard);
-formElementProfile.addEventListener('submit', handleFormSubmit);
+
 
 

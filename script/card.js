@@ -23,7 +23,7 @@ export default class Card {
     this._element.querySelector('.photo-plase__delete-button').addEventListener('click', () => this._deleteCard());
     this._element.querySelector('.photo-plase__hard').addEventListener('click', () => this._activeHard());
     this._element.querySelector('.photo-plase__image').addEventListener('click', () => {
-      this._openPicture(this._name, this._link);
+    this._openPicture(this._name, this._link);
 
 
     });
