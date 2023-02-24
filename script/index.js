@@ -1,4 +1,4 @@
-//import Section from "./Section.js";
+import Section from "./Section.js";
 
 import Card from "./Card.js";
 import UserInfo from "./UserInfo.js";
@@ -10,58 +10,12 @@ import PopupWithImage from "./PopupWithImage.js";
 import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement, popups } from "./data.js";
 
 
-/*
-class Section {
-  constructor({data, render} , containerSelector) {
-    this._renderedItems = data;
-    this._createCardClass = render;
-    this._containerSelector = containerSelector;
-    console.log( this._containerSelector)
-  }
-
-  appendCard(item) {
-    this._containerSelector.append(item);
-  }
-
-  renderItems() {
-    this._renderedItems.forEach(item => {
-      this.appendCard(item);
-      console.log(this._renderedItems)
-    });
-  }
-}
-
-
-const cardList = new Section({data: initialCards, render: createCardClass}, cardsContainer)
-  
-
-
-cardList.renderItems();
-
-
-*/
 
 //создание класса
 
 function createCard(item) {
   const card = new Card(item, '.photo-template', openPicture);
   return card.createCard();
-}
-
-
-
-// новая функция renderItems
-
-function renderStartCards(item) {
-  initialCards.forEach(item => {
-    appendCard(item);
-  });
-};
-
-// новая функция appendCard
-
-function appendCard(item) {
-  cardsContainer.append(createCard(item));
 }
 
 
@@ -113,6 +67,21 @@ popupPlaceForm.setEventListeners();
 const user = new UserInfo({ userNameElement: aboutName, userInfoElement: aboutProfession }); 
 
 
+const cardList = new Section({
+  data: initialCards,
+  renderer: (Item) => {
+    const card = new Card(Item, '.photo-template', openPicture);
+
+    const cardElement = card.createCard();
+
+    cardList.setItem(cardElement);
+    },
+  },
+  cardsContainer
+);
+
+cardList.renderItems();
+
 
 aboutButton.addEventListener('click', () => {
   profileValidator.clearErrorForm(aboutPopapProfile);
@@ -131,7 +100,7 @@ aboutAddbutton.addEventListener('click', () => {
 
 
 
-renderStartCards()
+//renderStartCards()
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 
 
