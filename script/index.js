@@ -11,13 +11,11 @@ import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace,
 
 
 
-//создание класса
-
 function createCard(item) {
-  const card = new Card(item, '.photo-template', openPicture);
+  const card = new Card(item, '.photo-template', 
+  (name, link) => {popupPhoto.openPicture(name,link);});
   return card.createCard();
 }
-
 
 
 function handleFormSubmit(evt) {
@@ -26,15 +24,6 @@ function handleFormSubmit(evt) {
   popupProfile.closePopup();
 
 };
-
-
-function openPicture(name, link) {
-  aboutPopupPhoto.alt = name;
-  aboutPopupPhoto.src = link;
-  aboutPopupPhotoTitle.textContent = name;
-  popupPhoto.openPopup();
-};
-
 
 
 function createNewCard(evt) {
@@ -54,26 +43,17 @@ const profileValidator = new FormValidator(config, aboutPopapProfile);
 const placeValidator = new FormValidator(config, aboutPopapPlace);
 profileValidator.enableValidation();
 placeValidator.enableValidation();
-const popupProfile = new Popup(aboutPopapProfile);
-popupProfile.setEventListeners();
-const popupPlace = new Popup(aboutPopapPlace);
+const popupPlace = new PopupWithForm(aboutPopapPlace, handleFormSubmit);
 popupPlace.setEventListeners();
+const popupProfile = new PopupWithForm(aboutPopapProfile, handleFormSubmit);
+popupProfile.setEventListeners();
 const popupPhoto = new PopupWithImage(aboutPopupTypyPhoto);
 popupPhoto.setEventListeners();
-const popupProfileForm = new PopupWithForm(aboutPopapProfile, handleFormSubmit);
-popupProfileForm.setEventListeners();
-const popupPlaceForm = new PopupWithForm(aboutPopapPlace, handleFormSubmit);
-popupPlaceForm.setEventListeners();
 const user = new UserInfo({ userNameElement: aboutName, userInfoElement: aboutProfession }); 
-
-
 const cardList = new Section({
   data: initialCards,
-  renderer: (Item) => {
-    const card = new Card(Item, '.photo-template', openPicture);
-
-    const cardElement = card.createCard();
-
+  renderer: (item) => {
+    const cardElement = createCard(item);
     cardList.setItem(cardElement);
     },
   },
@@ -99,8 +79,6 @@ aboutAddbutton.addEventListener('click', () => {
 });
 
 
-
-//renderStartCards()
 aboutFormNewPlase.addEventListener('submit', createNewCard);
 
 

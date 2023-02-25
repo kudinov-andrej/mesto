@@ -1,4 +1,5 @@
 
+
 export default class UserInfo {
     constructor({ userNameElement, userInfoElement }) {
       this._userNameElement = userNameElement;
