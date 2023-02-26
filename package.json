@@ -1,0 +1,22 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "* Проект место адаптивный сайт с реализацией JS.\r * Сайт создан с использованием медиазапросов, технологии gred и flex.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kudinov-andrej/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kudinov-andrej/mesto/issues"
+  },
+  "homepage": "https://github.com/kudinov-andrej/mesto#readme",
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
+}
