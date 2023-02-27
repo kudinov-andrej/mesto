@@ -9,7 +9,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement, popups } from "../components/data.js";
 
 
-
 function createCard(item) {
   const card = new Card(item, '.photo-template', 
   (name, link) => {popupPhoto.openPicture(name,link);});
