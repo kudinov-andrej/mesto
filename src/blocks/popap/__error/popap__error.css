@@ -14,7 +14,8 @@
         max-width: 238px;
         margin-left: 22px;
         margin-right: 22px;
-
+        min-height: 30px;
+        font-size: 11px;
     }
 }
 

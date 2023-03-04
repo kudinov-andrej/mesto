@@ -35,7 +35,6 @@ const config = {
   submitButtonSelector: '.popap__button',
   inactiveButtonClass: 'popap__button_disabled',
 
-
 };
 
 

@@ -16,38 +16,45 @@ function createCard(item) {
 }
 
 
-function handleFormSubmit(evt) {
-  aboutName.textContent = aboutformName.value;
-  aboutProfession.textContent = aboutformProfession.value;
+function handleFormSubmit(data) {
+  
+console.log(data)
   popupProfile.closePopup();
 
 };
 
-
-function createNewCard(evt) {
-  evt.preventDefault();
-  const newCard = createCard({ name: aboutInputNewPlace.value, link: aboutInputNewLink.value });
-  cardsContainer.prepend(newCard);
-  popupPlace.closePopup();
-  evt.target.reset();
-  evt.submitter.classList.add('.popap__button_disabled')
-  evt.submitter.disabled = true;
-
+  /*
+  aboutName.textContent = aboutformName.value;
+  aboutProfession.textContent = aboutformProfession.value; 
+  popupProfile.closePopup();
 
 };
+*/
+
+function createNewCard(data) {
+
+  console.log(data)
+  const newCard = createCard({
+    name: data.name,
+    link: data.link,
+  })
+  
+  cardsContainer.prepend(newCard);
+  popupPlace.closePopup();
+  };
 
 
 const profileValidator = new FormValidator(config, aboutPopapProfile);
 const placeValidator = new FormValidator(config, aboutPopapPlace);
 profileValidator.enableValidation();
 placeValidator.enableValidation();
-const popupPlace = new PopupWithForm(aboutPopapPlace, handleFormSubmit);
+const popupPlace = new PopupWithForm(".popap_typy_place", createNewCard);
 popupPlace.setEventListeners();
-const popupProfile = new PopupWithForm(aboutPopapProfile, handleFormSubmit);
+const popupProfile = new PopupWithForm('.popap_typy_profile', handleFormSubmit);
 popupProfile.setEventListeners();
-const popupPhoto = new PopupWithImage(aboutPopupTypyPhoto);
+const popupPhoto = new PopupWithImage('.popap_typy_photo');
 popupPhoto.setEventListeners();
-const user = new UserInfo({ userNameElement: aboutName, userInfoElement: aboutProfession }); 
+const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession'}); 
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
@@ -55,19 +62,18 @@ const cardList = new Section({
     cardList.setItem(cardElement);
     },
   },
-  cardsContainer
+  '.plase'
 );
 
 cardList.renderItems();
 
 
 aboutButton.addEventListener('click', () => {
-  profileValidator.clearErrorForm(aboutPopapProfile);
   popupProfile.openPopup()
   const userData = user.getUserInfo();
   aboutformName.value = userData.name;
   aboutformProfession.value = userData.about;
-  
+  profileValidator.clearErrorForm();
   
 });
 
@@ -77,7 +83,7 @@ aboutAddbutton.addEventListener('click', () => {
 });
 
 
-aboutFormNewPlase.addEventListener('submit', createNewCard);
+
 
 
 
