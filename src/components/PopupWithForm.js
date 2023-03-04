@@ -11,21 +11,9 @@ export default class PopupWithForm extends Popup {
       
   }
 
-  handleFormSubmit(name, profession) {
-
-    console.log(name, profession)
-
-   
-      
-      this.name.textContent = this._inputList.value;
-      this.profession.textContent = this._inputList.value; 
-      popupProfile.closePopup();
-    
-    };
   
   
   _getInputValues() {
-    //this._inputList = Array.from(this._form.querySelectorAll('.popap__input'));
     this._formValues = {};
     this._inputList.forEach(input => this._formValues[input.name] = input.value);
     return this._formValues;

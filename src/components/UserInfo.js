@@ -10,7 +10,9 @@ export default class UserInfo {
       return {
         name: this._userNameElement.textContent,
         about: this._userInfoElement.textContent
+        
       };
+      
     }
   
     setUserInfo(data) {

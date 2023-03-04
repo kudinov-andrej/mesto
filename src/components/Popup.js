@@ -1,5 +1,5 @@
 export default class Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, createNewCard) {
         this._element = document.querySelector(popupSelector);
        
     }

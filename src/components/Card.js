@@ -40,7 +40,7 @@ export default class Card {
 
 
 
-  createCard() {
+  genereateCard() {
     this._element = this._getElementFromTemplate().cloneNode(true);
     this._cardImage = this._element.querySelector('.photo-plase__image');
     this._element.querySelector('.photo-plase__name').textContent = this._name;

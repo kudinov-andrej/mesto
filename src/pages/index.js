@@ -6,42 +6,32 @@ import FormValidator from "../components/FormValidator.js";
 import { initialCards, config } from "../components/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, formElementProfile, buttonElement, inputElement, popups } from "../components/data.js";
+import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton } from "../components/data.js";
 
 
 function createCard(item) {
-  const card = new Card(item, '.photo-template', 
-  (name, link) => {popupPhoto.openPicture(name,link);});
-  return card.createCard();
+  const card = new Card(item, '.photo-template',
+    (name, link) => { popupPhoto.openPicture(name, link); });
+  return card.genereateCard();
 }
 
 
-function handleFormSubmit(data) {
-  
-console.log(data)
+
+const handleFormSubmit = (data) => {
+  user.setUserInfo(data)
   popupProfile.closePopup();
 
 };
 
-  /*
-  aboutName.textContent = aboutformName.value;
-  aboutProfession.textContent = aboutformProfession.value; 
-  popupProfile.closePopup();
 
-};
-*/
-
-function createNewCard(data) {
-
-  console.log(data)
-  const newCard = createCard({
-    name: data.name,
-    link: data.link,
-  })
-  
-  cardsContainer.prepend(newCard);
+const createNewCard = (data) => {
+  const newCard = createCard(data);
+  cardList.setItem(newCard);
   popupPlace.closePopup();
-  };
+
+
+
+};
 
 
 const profileValidator = new FormValidator(config, aboutPopapProfile);
@@ -54,14 +44,14 @@ const popupProfile = new PopupWithForm('.popap_typy_profile', handleFormSubmit);
 popupProfile.setEventListeners();
 const popupPhoto = new PopupWithImage('.popap_typy_photo');
 popupPhoto.setEventListeners();
-const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession'}); 
+const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession' });
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
     const cardElement = createCard(item);
     cardList.setItem(cardElement);
-    },
   },
+},
   '.plase'
 );
 
@@ -74,7 +64,7 @@ aboutButton.addEventListener('click', () => {
   aboutformName.value = userData.name;
   aboutformProfession.value = userData.about;
   profileValidator.clearErrorForm();
-  
+
 });
 
 aboutAddbutton.addEventListener('click', () => {
