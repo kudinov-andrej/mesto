@@ -39,3 +39,8 @@
 @import url(./../blocks/photo-plase/__hard/_active/hard_active.css);
 @import url(./../blocks/footer/footer.css);
 @import url(./../blocks/footer/__info/footer__info.css);
+@import url(./../blocks/popap/_typy/popap_typy_delete-photo.css);
+@import url(./../blocks/popap/__title/_type/popap__title_typy_delete-photo.css);
+@import url(./../blocks/popap/__button/_type/popap__button_type_delete-photo.css);
+@import url(./../blocks/popap/_typy/popap_typy_change-avatar.css);
+@import url(./../blocks/profile/__button/profile__button.css);

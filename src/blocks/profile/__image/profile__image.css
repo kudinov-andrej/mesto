@@ -1,18 +1,24 @@
 .profile__image {
     margin: 0;
     padding: 0;
-    margin-top: 36.25px;
-    margin-right: 23.5px;
     width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
 }
 
+.profile__image:hover {
+    opacity: 0.2;
+    cursor: pointer;
+  
+}
+
+
 @media screen and (max-width: 929px) {
-    .profile__image {
-        margin-right: 0;
-        margin-top: 38.25px;
-        margin-bottom: 22.25px;
+    .profile__button {
+        padding-right: 0;
+        padding-top: 38.25px;
+        padding-bottom: 22.25px;
     }
 }
 

@@ -12,7 +12,9 @@
   <main class="content">
    <section class="profile">
       <div class="profile__block">
-          <img class="profile__image" src="<%=require('./image/image.jpg')%>" alt="Фото профиля">
+          <button  type="button" class="profile__button">
+            <img class="profile__image" src="<%=require('./image/image.jpg')%>" alt="Фото профиля">
+          </button>
         <div class="profile__content">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -59,6 +61,26 @@
       <button class="popap__button-close" type = "button"></button>
       <img class="popap__photo" src="#" alt="#">
       <h2 class="popap__photo-name"></h2>
+    </div>
+  </div>
+  <div class="popap popap_typy_delete-photo">
+    <div class="popap__conteiner">
+      <button class="popap__button-close" type = "button"></button>
+      <h2 class="popap__title popap__title_typy_delete-photo">Вы уверены?</h2>
+      <form class="popap__form popap__form_type_delete-photo" action="#" name ="popap-form" novalidate>
+        <input type="submit" class="popap__button popap__button_type_delete-photo" value="Да"/>
+      </form>
+    </div>
+  </div>
+  <div class="popap popap_typy_change-avatar">
+    <div class="popap__conteiner">
+      <button class="popap__button-close" type = "button"></button>
+      <h2 class="popap__title">Обновить аватар</h2>
+      <form class="popap__form popap__form_type_new-place" action="#" name ="popap-form" novalidate>
+        <input type="url" id="popap__input-link" class="popap__input popap__input_type_link popap__input_type_new-link" value="" name = "link" placeholder="Ссылка на картинку" required/>
+        <span class="popap__error popap__input-link-error"></span>
+        <input type="submit" class="popap__button popap__button_type_save popap__button_type_disabled" value="Создать"/>
+      </form>
     </div>
   </div>
   <template class="photo-template">

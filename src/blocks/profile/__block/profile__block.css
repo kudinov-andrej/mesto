@@ -6,6 +6,10 @@
     flex-direction: row;
 }
 
+.profile__block:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 @media screen and (max-width: 929px) {
     .profile__block {
         margin: auto;

@@ -28,7 +28,8 @@ export default class Card {
   }
 
   _deleteCard() {
-    this._element.remove();
+    
+   this._element.remove();
 
 
   };
@@ -38,7 +39,9 @@ export default class Card {
 
   };
 
+  changeAvatar() {
 
+  }
 
   genereateCard() {
     this._element = this._getElementFromTemplate().cloneNode(true);

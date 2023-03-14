@@ -41,6 +41,8 @@ const config = {
 const aboutButton = document.querySelector('.profile__edit-button');
 const aboutPopapProfile = document.querySelector('.popap_typy_profile');
 const aboutPopapPlace = document.querySelector('.popap_typy_place');
+const aboutPopapChangeAvatar = document.querySelector('.popap_typy_change-avatar');
+const aboutPopapDeletePhoto = document.querySelector('.popap_typy_delete-photo');
 const aboutButtonclosePlace = aboutPopapPlace.querySelector('.popap__button-close');
 const aboutButtonClose = document.querySelector('.popap__button-close');
 const aboutformName = document.querySelector('.popap__input_type_name');
@@ -66,5 +68,5 @@ const buttonElement = document.querySelector('.popap__button');
 const inputElement = formElementProfile.querySelector('.popap__input');
 const popups = document.querySelectorAll('.popap')
 
-export { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement, popups };
+export { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement, popups, aboutPopapChangeAvatar, aboutPopapDeletePhoto };
 export { initialCards, config }; 
