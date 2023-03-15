@@ -37,15 +37,38 @@ export default class Api {
       return fetch(`${this._basePath}/users/me`, {
         headers: this._getHeaders(),
       }).then(this._getJson);
+
+      
     }
 
   
-    deleteCard(id) {
+    deleteCard(data) {
       return fetch(`${this._basePath}/cards/${id}`, {
         method: "DELETE",
         headers: this._getHeaders(),
       }).then(this._getJson);
     }
     
+ 
+      setUserInfo(item) {
+        return fetch(`${this._basePath}/users/me`, {
+                method: 'PATCH',
+                headers: this._getHeaders(),
+                body: JSON.stringify({
+                    name: item.name,
+                    about: item.about
+                })
+            })
+            .then(this._getJson);
+    }
+
+    setUserAvatar(avatar) {
+        return fetch(`${this._basePath}/users/me/avatar`, {
+                method: 'PATCH',
+                headers: this._getHeaders(),
+                body: JSON.stringify(avatar),
+            })
+            .then(this._getJson);
+
   }
-  
+}
