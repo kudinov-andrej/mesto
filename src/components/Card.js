@@ -1,26 +1,32 @@
-
 export default class Card {
-  constructor(item, templateSelector, openPicture) {
-    this._name = item.name;
-    this._link = item.link;
+  constructor(data, currentUserId, templateSelector, deleteCardApi, openPicture) {
+    this._id = data._id;
+    this._name = data.name;
+    this._link = data.link;
+    this._deleteCardApi = deleteCardApi;
     this._selector = templateSelector;
     this._openPicture = openPicture;
+    this._isOwner = data.owner._id === currentUserId;
+    
     this._deleteCard = this._deleteCard.bind(this);
     this._activeHard = this._activeHard.bind(this);
 
-
   }
 
-
+  _getView() {
+    if (this._isOwner) {
+        this._element.querySelector('.photo-plase__delete-button').classList.add('photo-plase__delete-button_show');
+    }
+}
   _getElementFromTemplate() {
     return document.querySelector(this._selector).content.querySelector('.photo-plase')
 
-
+   
   }
-
 
   _addEventListeners() {
     this._element.querySelector('.photo-plase__delete-button').addEventListener('click', () => this._deleteCard());
+
     this._element.querySelector('.photo-plase__hard').addEventListener('click', () => this._activeHard());
     this._element.querySelector('.photo-plase__image').addEventListener('click', () => {
     this._openPicture(this._name, this._link);
@@ -28,10 +34,8 @@ export default class Card {
   }
 
   _deleteCard() {
-    
-   this._element.remove();
-
-
+  this._deleteCardApi(this._id, this._element);
+   
   };
 
   _activeHard(evt) {
@@ -39,9 +43,7 @@ export default class Card {
 
   };
 
-  changeAvatar() {
 
-  }
 
   genereateCard() {
     this._element = this._getElementFromTemplate().cloneNode(true);
@@ -51,9 +53,11 @@ export default class Card {
     this._cardImage.alt = this._name;
     this._buttonLike = this._element.querySelector('.photo-plase__hard');
     this._addEventListeners();
+    this._getView();
     return this._element;
 
   };
 
 
 }
+

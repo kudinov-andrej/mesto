@@ -1,18 +1,25 @@
+
+
 import '../pages/index.css';
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-import { initialCards, config } from "../components/data.js";
+import { config } from "../components/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../components/data.js";
+import {token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../components/data.js";
+import Api from "../components/Api.js";
 
 
 function createCard(item) {
-  const card = new Card(item, '.photo-template',
+  const card = new Card(item,
+     currentUserId,
+    '.photo-template',
+    deleteCard,
     (name, link) => { popupPhoto.openPicture(name, link); });
   return card.genereateCard();
+  
 }
 
 
@@ -23,20 +30,69 @@ const handleFormSubmit = (data) => {
 
 };
 
+
+const createNewCard = (data, currentUserId) => {
+  api.createCard(data).then((newData) => {
+  const newCard = createCard(newData, currentUserId, deleteCard);
+  cardList.setItem(newCard);
+ })
+ .catch((err) => {
+  console.log(err);
+ });
+  popupPlace.closePopup();
+
+};
+
+function deleteCard(id, element) {
+  return api.deleteCard(id).then(() => {
+    console.log("меняем статус обратно");
+    element.remove();
+  });
+}
+
 const ChangeAvatar = (data) => {
   user.changeAvatarPicture(data);
   popapChangeAvatar.closePopup();
 }
 
+const api = new Api(
+  "https://mesto.nomoreparties.co/v1/cohort-61/",
+  "8cfb2ade-293c-430d-a1cd-027f0315247f"
+)
+/*
+api.getCurrentUser().then((user) => {
+console.log(user)
+});
 
-const createNewCard = (data) => {
-  const newCard = createCard(data);
-  cardList.setItem(newCard);
-  popupPlace.closePopup();
+api.getCards().then((items) => {
+  cardList.renderItems(items);
+})
+.catch((err) => {
+  console.log(err);
+ });
+*/
+let currentUserId;
+
+ Promise.all([api.getCards(), api.getCurrentUser()])
+ .then(([items, user]) => {
+  currentUserId = user._id;
+   cardList.renderItems(items);
+ })
+ .catch((err) => {
+   console.log(err);
+ });
+
+ 
+const cardList = new Section({
+  renderer: (item) => {
+    const cardElement = createCard(item);
+    cardList.setItem(cardElement);
+  },
+},
+  '.plase'
+);
 
 
-
-};
 
 
 const profileValidator = new FormValidator(config, aboutPopapProfile);
@@ -67,18 +123,9 @@ popapChangeAvatar.setEventListeners()
 const popapDelPhoto = new PopupWithForm(".popap_typy_delete-photo");
 popapDelPhoto.setEventListeners()
 
-const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession', userUrlSelector: '.profile__image'});
-const cardList = new Section({
-  data: initialCards,
-  renderer: (item) => {
-    const cardElement = createCard(item);
-    cardList.setItem(cardElement);
-  },
-},
-  '.plase'
-);
 
-cardList.renderItems();
+const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession', userUrlSelector: '.profile__image'});
+
 
 
 aboutButton.addEventListener('click', () => {
