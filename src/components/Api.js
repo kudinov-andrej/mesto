@@ -34,15 +34,13 @@ export default class Api {
     }
 
     getCurrentUser() {
-      return fetch(`${this._basePath}/users/me`, {
-        headers: this._getHeaders(),
-      }).then(this._getJson);
-
-      
-    }
+        return fetch(`${this._basePath}/users/me`, {
+          headers: this._getHeaders(),
+        }).then(this._getJson);
+      }
 
   
-    deleteCard(data) {
+    deleteCard(id) {
       return fetch(`${this._basePath}/cards/${id}`, {
         method: "DELETE",
         headers: this._getHeaders(),

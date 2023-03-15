@@ -3,14 +3,13 @@ export default class Card {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
+    this._isOwner = data.owner._id === currentUserId;
     this._deleteCardApi = deleteCardApi;
     this._selector = templateSelector;
     this._openPicture = openPicture;
-    this._isOwner = data.owner._id === currentUserId;
-    
     this._deleteCard = this._deleteCard.bind(this);
     this._activeHard = this._activeHard.bind(this);
-
+console.log(data.owner._id)
   }
 
   _getView() {
@@ -21,12 +20,10 @@ export default class Card {
   _getElementFromTemplate() {
     return document.querySelector(this._selector).content.querySelector('.photo-plase')
 
-   
   }
 
   _addEventListeners() {
     this._element.querySelector('.photo-plase__delete-button').addEventListener('click', () => this._deleteCard());
-
     this._element.querySelector('.photo-plase__hard').addEventListener('click', () => this._activeHard());
     this._element.querySelector('.photo-plase__image').addEventListener('click', () => {
     this._openPicture(this._name, this._link);
@@ -35,7 +32,7 @@ export default class Card {
 
   _deleteCard() {
   this._deleteCardApi(this._id, this._element);
-   
+  
   };
 
   _activeHard(evt) {

@@ -75,8 +75,8 @@ let currentUserId;
 
  Promise.all([api.getCards(), api.getCurrentUser()])
  .then(([items, userData]) => {
+  currentUserId = userData._id;
   cardList.renderItems(items);
-  currentUserId = user._id;
   user.setUserInfo(userData);
   avatarImg.style.backgroundImage = `url(${userData.avatar})`;
  })
