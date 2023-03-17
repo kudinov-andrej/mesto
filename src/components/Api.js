@@ -79,10 +79,10 @@ export default class Api {
     }
 
     deleteLike(id) {
-        return fetch(`${this._basePath}/cards/${_id}/likes`, {
+        return fetch(`${this._basePath}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._getHeaders(),
-            body: JSON.stringify(),
+        
         })
 .then(this._getJson);
     }

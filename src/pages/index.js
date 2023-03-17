@@ -10,7 +10,7 @@ import {token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformNa
 import Api from "../components/Api.js";
 import PopupWithFormDeleteCard from "../components/PopupWithFormDeleteCard.js";
 
-function createCard(item,) {
+function createCard(item) {
   const card = new Card(item,
      currentUserId,
     '.photo-template',
@@ -18,19 +18,22 @@ function createCard(item,) {
     likeClick,
     (name, link) => { popupPhoto.openPicture(name, link); });
   return card.genereateCard();
+
+    
   
 }
 
 
 
-function likeClick(card, data) {
-  const promise = card.isLiked() ? api.deleteLike(data._id) : api.setLike(data._id);
+function likeClick(card) {
+  const promise = card.isLiked(card) ? api.deleteLike(card._id) : api.setLike(card._id);
   promise
       .then((data) => {
           card.setLike(data);
+          
       })
       .catch((err) => {
-          console.log(`${err}`);
+         console.log(`${err}`);
       });
 }
 
@@ -73,6 +76,7 @@ function deleteCard(id, element) {
 return api.deleteCard(id).then(() => {
     element.remove();
     popupDeleteCard.closePopup() 
+   
   }); 
 })
 }
