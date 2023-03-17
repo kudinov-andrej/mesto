@@ -40,7 +40,7 @@ export default class Card {
 // Проблема здесь! после перезагрузки страницы сохраняется счетчик лайков, но уходит выделение сердечка цветом
 
 isLiked() {
-   return _isLiked;
+   return this._isLiked;
    
 }
 
