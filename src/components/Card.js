@@ -44,7 +44,7 @@ console.log(openPicture)
    
     this._buttonLike.classList.toggle("hard_active");
 
-    return this._isLiked;
+  
   };
 */
 
