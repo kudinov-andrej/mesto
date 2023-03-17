@@ -31,6 +31,8 @@ const handleFormSubmit = (item) => {
 
 };
 
+
+
 /*
 api.changeProfile().then((data) => {
     console.log(data)
@@ -52,10 +54,16 @@ const createNewCard = (data, currentUserId) => {
 };
 
 function deleteCard(id, element) {
-  return api.deleteCard(id).then(() => {
-    console.log("меняем статус обратно");
+  popupDeleteCard.openPopup();
+  popupDeleteCard.setFormSubmitHandler(() => {
+return api.deleteCard(id).then(() => {
     element.remove();
+    popupDeleteCard.closePopup() 
   });
+  
+})
+
+
 }
 
 const ChangeAvatar = (item) => {
@@ -78,7 +86,7 @@ let currentUserId;
   currentUserId = userData._id;
   cardList.renderItems(items);
   user.setUserInfo(userData);
-  avatarImg.style.backgroundImage = `url(${userData.avatar})`;
+  //avatarImg.style.backgroundImage = `url(${userData.avatar})`;
  })
  .catch((err) => {
    console.log(err);
@@ -93,7 +101,6 @@ const cardList = new Section({
 },
   '.plase'
 );
-
 
 
 
@@ -120,15 +127,11 @@ popupPhoto.setEventListeners();
 const popapChangeAvatar = new PopupWithForm(".popap_typy_change-avatar", ChangeAvatar);
 popapChangeAvatar.setEventListeners()
 
-//ещё 1 попап
-/*
-const popapDelPhoto = new PopupWithForm(".popap_typy_delete-photo");
-popapDelPhoto.setEventListeners()
-*/
 
 const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession', userUrlSelector: '.profile__image'});
 
-
+const popupDeleteCard = new PopupWithFormDeleteCard(".popap_typy_delete-photo")
+popupDeleteCard.setEventListeners()
 
 aboutButton.addEventListener('click', () => {
   popupProfile.openPopup()

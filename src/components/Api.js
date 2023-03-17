@@ -69,4 +69,23 @@ export default class Api {
             .then(this._getJson);
 
   }
+
+  setLike() {
+    return fetch(`${this._basePath}cards/${id}/likes`, {
+        method: 'PUT',
+        headers: this._getHeaders(),
+        body: JSON.stringify(),
+    })
+    .then(this._getJson);
+}
+
+  deleteLike() {
+    return fetch(`${this._basePath}cards/${id}/likes`, {
+        method: 'DELETE',
+        headers: this._getHeaders(),
+        body: JSON.stringify(),
+    })
+    .then(this._getJson);
+}
+
 }

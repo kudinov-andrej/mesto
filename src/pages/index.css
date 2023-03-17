@@ -45,3 +45,5 @@
 @import url(./../blocks/popap/_typy/popap_typy_change-avatar.css);
 @import url(./../blocks/profile/__button/profile__button.css);
 @import url(./../blocks/photo-plase/__delete-button/_show/photo-plase__delete-button_show.css);
+@import url(./../blocks/photo-plase/__like-conteiner/photo-plase__like-conteiner.css);
+@import url(./../blocks/photo-plase/__counter-like/photo-plase__counter-like.css);

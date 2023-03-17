@@ -3,13 +3,13 @@ export default class Card {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
-    this._isOwner = data.owner._id === currentUserId;
     this._deleteCardApi = deleteCardApi;
     this._selector = templateSelector;
     this._openPicture = openPicture;
+    this._isOwner = data.owner._id === currentUserId;
     this._deleteCard = this._deleteCard.bind(this);
-    this._activeHard = this._activeHard.bind(this);
-console.log(data.owner._id)
+    this._activeHard = this.activeHard.bind(this);
+console.log(currentUserId)
   }
 
   _getView() {
@@ -35,7 +35,7 @@ console.log(data.owner._id)
   
   };
 
-  _activeHard(evt) {
+  activeHard(evt) {
     this._buttonLike.classList.toggle("hard_active");
 
   };
