@@ -1,7 +1,7 @@
 export default class Popup {
-    constructor(popupSelector, createNewCard) {
+    constructor(popupSelector) {
         this._element = document.querySelector(popupSelector);
-       
+        this._button = this._element.querySelector(".popap__button")
     }
 
 
@@ -29,6 +29,13 @@ export default class Popup {
 
         }
     }
+    renderLoading(isLoading) {
+      if (isLoading) {
+      this._button.value = "Сохранение..."
+      } else {
+        this._button.value = "Сохранить"
+      }
+    } 
 
     setEventListeners() {
         this._element.addEventListener('mousedown', (evt) => {

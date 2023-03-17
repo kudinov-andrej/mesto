@@ -5,11 +5,11 @@ export default class Card {
     this._link = data.link;
     this._deleteCardApi = deleteCardApi;
     this._selector = templateSelector;
-    this._openPicture = openPicture;
+    this._likes = data.likes;
+    this._openPicture = openPicture;  
     this._isOwner = data.owner._id === currentUserId;
-    this._deleteCard = this._deleteCard.bind(this);
     this._activeHard = this.activeHard.bind(this);
-console.log(currentUserId)
+console.log(this._setLike)
   }
 
   _getView() {
@@ -35,9 +35,13 @@ console.log(currentUserId)
   
   };
 
-  activeHard(evt) {
+
+  
+  activeHard(id) {
+   
     this._buttonLike.classList.toggle("hard_active");
 
+    return this._isLiked;
   };
 
 
@@ -51,6 +55,7 @@ console.log(currentUserId)
     this._buttonLike = this._element.querySelector('.photo-plase__hard');
     this._addEventListeners();
     this._getView();
+    this._element.querySelector('.photo-plase__counter-like').textContent = this._likes.length;
     return this._element;
 
   };

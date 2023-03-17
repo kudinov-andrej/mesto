@@ -20,38 +20,38 @@ function createCard(item) {
   
 }
 
-
-
 const handleFormSubmit = (item) => {
+  popupProfile.renderLoading(true);
   api.setUserInfo(item)
   .then((data) => {
       user.setUserInfo(data);
   })
-  popupProfile.closePopup();
+  .finally((data) => {
+    popupProfile.renderLoading(false); 
+   }); 
+   popupProfile.closePopup();
 
 };
 
-
-
-/*
-api.changeProfile().then((data) => {
-    console.log(data)
-    user.setUserInfo(data)
-  })
-
-  */
-
 const createNewCard = (data, currentUserId) => {
-  api.createCard(data).then((newData) => {
+  popupPlace.renderLoading(true);
+  api.createCard(data)
+  .then((newData) => {
   const newCard = createCard(newData, currentUserId);
   cardList.setItem(newCard);
  })
  .catch((err) => {
   console.log(err);
- });
+ })
+ .finally(() => {
+  popupPlace.renderLoading(false); 
+ }); 
+
   popupPlace.closePopup();
 
 };
+
+
 
 function deleteCard(id, element) {
   popupDeleteCard.openPopup();
@@ -59,19 +59,20 @@ function deleteCard(id, element) {
 return api.deleteCard(id).then(() => {
     element.remove();
     popupDeleteCard.closePopup() 
-  });
-  
+  }); 
 })
-
-
 }
 
 const ChangeAvatar = (item) => {
+  popapChangeAvatar.renderLoading(true);
   api.setUserAvatar(item)
   .then((data) => {
-    user.changeAvatarPicture(data);
+    user.changeAvatarPicture(data); 
   })
-  popapChangeAvatar.closePopup();
+ .finally((data) => {
+  popapChangeAvatar.renderLoading(false); 
+ }); 
+  popapChangeAvatar.closePopup(); 
 }
 
 const api = new Api(
@@ -86,7 +87,7 @@ let currentUserId;
   currentUserId = userData._id;
   cardList.renderItems(items);
   user.setUserInfo(userData);
-  //avatarImg.style.backgroundImage = `url(${userData.avatar})`;
+
  })
  .catch((err) => {
    console.log(err);
@@ -101,7 +102,6 @@ const cardList = new Section({
 },
   '.plase'
 );
-
 
 
 const profileValidator = new FormValidator(config, aboutPopapProfile);
