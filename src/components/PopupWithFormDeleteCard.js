@@ -9,6 +9,7 @@ export default class PopupWithFormDeleteCard extends Popup {
 
   setFormSubmitHandler(token) {
       this.setFormSubmitHandler = token;
+      
   }
 
   setEventListeners() {

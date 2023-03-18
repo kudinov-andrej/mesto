@@ -76,6 +76,9 @@ function deleteCard(id, element) {
         element.remove();
         popupDeleteCard.closePopup()
       })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
   })
 }
 
