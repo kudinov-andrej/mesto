@@ -6,66 +6,62 @@ import FormValidator from "../components/FormValidator.js";
 import { config } from "../components/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import {token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../components/data.js";
+import { changeAvatar, token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../components/data.js";
 import Api from "../components/Api.js";
 import PopupWithFormDeleteCard from "../components/PopupWithFormDeleteCard.js";
 
 function createCard(item) {
   const card = new Card(item,
-     currentUserId,
+    currentUserId,
     '.photo-template',
     deleteCard,
     likeClick,
     (name, link) => { popupPhoto.openPicture(name, link); });
   return card.genereateCard();
 
-    
-  
 }
-
-
 
 function likeClick(card) {
   const promise = card.isLiked(card) ? api.deleteLike(card._id) : api.setLike(card._id);
   promise
-      .then((data) => {
-          card.setLike(data);
-          
-      })
-      .catch((err) => {
-         console.log(`${err}`);
-      });
+    .then((data) => {
+      card.setLike(data);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
 }
 
 const handleFormSubmit = (item) => {
   popupProfile.renderLoading(true);
   api.setUserInfo(item)
-  .then((data) => {
+    .then((data) => {
       user.setUserInfo(data);
-  })
-  .finally((data) => {
-    popupProfile.renderLoading(false); 
-   }); 
-   popupProfile.closePopup();
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
+    .finally((data) => {
+      popupProfile.renderLoading(false);
+    });
+  popupProfile.closePopup();
 
 };
 
 const createNewCard = (data, currentUserId) => {
   popupPlace.renderLoading(true);
   api.createCard(data)
-  .then((newData) => {
-  const newCard = createCard(newData, currentUserId);
-  cardList.setItem(newCard);
- })
- .catch((err) => {
-  console.log(err);
- })
- .finally(() => {
-  popupPlace.renderLoading(false); 
- }); 
-
-  popupPlace.closePopup();
-
+    .then((newData) => {
+      const newCard = createCard(newData, currentUserId);
+      cardList.setItem(newCard);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
+    .finally(() => {
+      popupPlace.renderLoading(false);
+    });
+      popupPlace.closePopup();
 };
 
 
@@ -73,31 +69,30 @@ const createNewCard = (data, currentUserId) => {
 function deleteCard(id, element) {
   popupDeleteCard.openPopup();
   popupDeleteCard.setFormSubmitHandler(() => {
-return api.deleteCard(id).then(() => {
-    element.remove();
-    popupDeleteCard.closePopup() 
-   
-  }); 
-})
+    return api.deleteCard(id)
+      .then(() => {
+        element.remove();
+        popupDeleteCard.closePopup()
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+  })
 }
-/*
-function setLike (likes) {
-  return api.setLike(likes).then(() => {
-    card.activeHard(likes)
-  }); 
 
-}
-*/
 const ChangeAvatar = (item) => {
   popapChangeAvatar.renderLoading(true);
   api.setUserAvatar(item)
-  .then((data) => {
-    user.changeAvatarPicture(data); 
-  })
- .finally((data) => {
-  popapChangeAvatar.renderLoading(false); 
- }); 
-  popapChangeAvatar.closePopup(); 
+    .then((data) => {
+      user.changeAvatarPicture(data);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    })
+    .finally((data) => {
+      popapChangeAvatar.renderLoading(false);
+    });
+  popapChangeAvatar.closePopup();
 }
 
 const api = new Api(
@@ -107,17 +102,16 @@ const api = new Api(
 
 let currentUserId;
 
- Promise.all([api.getCards(), api.getCurrentUser()])
- .then(([items, userData]) => {
-  currentUserId = userData._id;
-  cardList.renderItems(items);
-  user.setUserInfo(userData);
+Promise.all([api.getCards(), api.getCurrentUser()])
+  .then(([items, userData]) => {
+    currentUserId = userData._id;
+    cardList.renderItems(items);
+    user.setUserInfo(userData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
- })
- .catch((err) => {
-   console.log(err);
- });
- 
 
 const cardList = new Section({
   renderer: (item) => {
@@ -139,24 +133,16 @@ placeValidator.enableValidation();
 aboutPopapChangeAvatarValidator.enableValidation();
 
 const popupPlace = new PopupWithForm(".popap_typy_place", createNewCard);
-popupPlace.setEventListeners();
-
-
 const popupProfile = new PopupWithForm('.popap_typy_profile', handleFormSubmit);
-popupProfile.setEventListeners();
-
-const popupPhoto = new PopupWithImage('.popap_typy_photo');
-popupPhoto.setEventListeners();
-
-//новый попап
 const popapChangeAvatar = new PopupWithForm(".popap_typy_change-avatar", ChangeAvatar);
+const popupPhoto = new PopupWithImage('.popap_typy_photo');
+const popupDeleteCard = new PopupWithFormDeleteCard(".popap_typy_delete-photo");
+popupPlace.setEventListeners();
+popupProfile.setEventListeners();
 popapChangeAvatar.setEventListeners()
-
-
-const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession', userUrlSelector: '.profile__image'});
-
-const popupDeleteCard = new PopupWithFormDeleteCard(".popap_typy_delete-photo")
+popupPhoto.setEventListeners();
 popupDeleteCard.setEventListeners()
+const user = new UserInfo({ userNameSelector: '.profile__name', userInfoSelector: '.profile__profession', userUrlSelector: '.profile__image' });
 
 aboutButton.addEventListener('click', () => {
   popupProfile.openPopup()
@@ -167,7 +153,6 @@ aboutButton.addEventListener('click', () => {
 
 });
 
-const changeAvatar = document.querySelector(".profile__button");
 
 changeAvatar.addEventListener('click', () => {
   popapChangeAvatar.openPopup();

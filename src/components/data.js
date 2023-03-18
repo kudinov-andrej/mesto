@@ -1,5 +1,3 @@
-
-
 const config = {
   formSelector: '.popap__form',
   formSelectorPlace: '.popap__form_type_new-place',
@@ -10,7 +8,6 @@ const config = {
   inactiveButtonClass: 'popap__button_disabled',
 
 };
-
 
 const aboutButton = document.querySelector('.profile__edit-button');
 const aboutPopapProfile = document.querySelector('.popap_typy_profile');
@@ -40,10 +37,11 @@ const aboutPopupPhotoTitle = aboutPopupTypyPhoto.querySelector('.popap__photo-na
 const aboutPopupPhoto = aboutPopupTypyPhoto.querySelector('.popap__photo');
 const buttonElement = document.querySelector('.popap__button');
 const inputElement = formElementProfile.querySelector('.popap__input');
-const popups = document.querySelectorAll('.popap')
+const popups = document.querySelectorAll('.popap');
+const changeAvatar = document.querySelector(".profile__button");
 
 const token = '8cfb2ade-293c-430d-a1cd-027f0315247f';
 const URL = 'https://mesto.nomoreparties.co/v1/cohort-61/';
 
-export { token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement, popups, aboutPopapChangeAvatar, aboutPopapDeletePhoto };
+export { changeAvatar, token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutButtonclosePlace, aboutButtonClose, aboutformName, aboutformProfession, aboutName, aboutProfession, aboutAddbutton, cardsContainer, photoTemplate, aboutFormNewPlase, aboutButtonSavePlace, aboutInputNewPlace, aboutInputNewLink, aboutPopupTypyPhoto, aboutPopupButtonClose, aboutPopupPhotoTitle, aboutPopupPhoto, buttonElement, formElementProfile, inputElement, popups, aboutPopapChangeAvatar, aboutPopapDeletePhoto };
 export { config }; 
