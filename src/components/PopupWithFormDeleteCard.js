@@ -8,7 +8,7 @@ export default class PopupWithFormDeleteCard extends Popup {
   }
 
   setFormSubmitHandler(token) {
-      this.setFormSubmitHandler = token;
+      this.formSubmitHandler = token;
       
   }
 
@@ -16,7 +16,7 @@ export default class PopupWithFormDeleteCard extends Popup {
       super.setEventListeners();
       this._form.addEventListener('submit', (event) => {
           event.preventDefault();
-          this.setFormSubmitHandler();
+          this.formSubmitHandler();
       });
   }
 }
