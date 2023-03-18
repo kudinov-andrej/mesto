@@ -3,10 +3,10 @@ import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-import { config } from "../components/data.js";
+import { config } from "../util/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { changeAvatar, token, URL, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../components/data.js";
+import { changeAvatarButton, aboutButton, aboutPopapProfile, aboutPopapPlace, aboutformName, aboutformProfession, aboutAddbutton, aboutPopapChangeAvatar, aboutPopapDeletePhoto } from "../util/data.js";
 import Api from "../components/Api.js";
 import PopupWithFormDeleteCard from "../components/PopupWithFormDeleteCard.js";
 
@@ -37,6 +37,7 @@ const handleFormSubmit = (item) => {
   api.setUserInfo(item)
     .then((data) => {
       user.setUserInfo(data);
+      popupProfile.closePopup();
     })
     .catch((err) => {
       console.log(`${err}`);
@@ -44,7 +45,7 @@ const handleFormSubmit = (item) => {
     .finally((data) => {
       popupProfile.renderLoading(false);
     });
-  popupProfile.closePopup();
+  
 
 };
 
@@ -54,6 +55,7 @@ const createNewCard = (data, currentUserId) => {
     .then((newData) => {
       const newCard = createCard(newData, currentUserId);
       cardList.setItem(newCard);
+      popupPlace.closePopup();
     })
     .catch((err) => {
       console.log(`${err}`);
@@ -61,7 +63,7 @@ const createNewCard = (data, currentUserId) => {
     .finally(() => {
       popupPlace.renderLoading(false);
     });
-      popupPlace.closePopup();
+      
 };
 
 
@@ -74,17 +76,15 @@ function deleteCard(id, element) {
         element.remove();
         popupDeleteCard.closePopup()
       })
-      .catch((err) => {
-        console.log(`${err}`);
-      })
   })
 }
 
-const ChangeAvatar = (item) => {
+const changeAvatar = (item) => {
   popapChangeAvatar.renderLoading(true);
   api.setUserAvatar(item)
     .then((data) => {
       user.changeAvatarPicture(data);
+      popapChangeAvatar.closePopup();
     })
     .catch((err) => {
       console.log(`${err}`);
@@ -92,7 +92,7 @@ const ChangeAvatar = (item) => {
     .finally((data) => {
       popapChangeAvatar.renderLoading(false);
     });
-  popapChangeAvatar.closePopup();
+  
 }
 
 const api = new Api(
@@ -134,7 +134,7 @@ aboutPopapChangeAvatarValidator.enableValidation();
 
 const popupPlace = new PopupWithForm(".popap_typy_place", createNewCard);
 const popupProfile = new PopupWithForm('.popap_typy_profile', handleFormSubmit);
-const popapChangeAvatar = new PopupWithForm(".popap_typy_change-avatar", ChangeAvatar);
+const popapChangeAvatar = new PopupWithForm(".popap_typy_change-avatar", changeAvatar);
 const popupPhoto = new PopupWithImage('.popap_typy_photo');
 const popupDeleteCard = new PopupWithFormDeleteCard(".popap_typy_delete-photo");
 popupPlace.setEventListeners();
@@ -154,7 +154,7 @@ aboutButton.addEventListener('click', () => {
 });
 
 
-changeAvatar.addEventListener('click', () => {
+changeAvatarButton.addEventListener('click', () => {
   popapChangeAvatar.openPopup();
   placeValidator.clearErrorForm();
 });
